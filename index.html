@@ -9,19 +9,22 @@
       background-color: #eaf6fb;
       font-family: sans-serif;
       text-align: center;
-      padding: 3em 1em;
+      padding: 2em 1em;
     }
     .container {
       background: #fff;
       padding: 2em;
       border-radius: 10px;
-      max-width: 500px;
+      max-width: 460px;
       margin: auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h1 {
+      font-size: 1.5em;
       color: #1976d2;
-      margin-bottom: 1em;
+      margin-bottom: 1.2em;
+      line-height: 1.6em;
+      white-space: pre-line;
     }
     .line-button {
       display: inline-block;
@@ -29,7 +32,7 @@
       color: #fff;
       padding: 1em 2em;
       border-radius: 8px;
-      font-size: 1.1em;
+      font-size: 1em;
       text-decoration: none;
       margin-top: 2em;
     }
@@ -37,12 +40,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>ここまでご覧いただきありがとうございます</h1>
+    <h1>ここまでご覧いただき<br>ありがとうございます</h1>
     <a class="line-button" id="lineLink" href="#" target="_blank">📲 公式LINEに登録する</a>
   </div>
 
   <script>
-    // URLパラメータからrefを取得し、GASに送信
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref") || "不明";
 
@@ -54,7 +56,6 @@
       console.error("送信エラー:", err);
     });
 
-    // LINEリンクを設定
     document.getElementById("lineLink").href = "https://line.me/R/ti/p/@479rnxap";
   </script>
 </body>
