@@ -1,21 +1,61 @@
-function doPost(e) {
-  const ss = SpreadsheetApp.openById("10SI3cZ9Cxv13VXiQk0Fd1OvVQTdTlFAnZlviRfdqycg");
-  const sheet = ss.getSheetByName("紹介コード"); // シート名に応じて調整
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LINE登録ページ</title>
+  <style>
+    body {
+      background-color: #eaf6fb;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 3em 1em;
+    }
+    .container {
+      background: #fff;
+      padding: 2em;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #1976d2;
+      margin-bottom: 1em;
+    }
+    .line-button {
+      display: inline-block;
+      background: #06C755;
+      color: #fff;
+      padding: 1em 2em;
+      border-radius: 8px;
+      font-size: 1.1em;
+      text-decoration: none;
+      margin-top: 2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ここまでご覧いただきありがとうございます</h1>
+    <a class="line-button" id="lineLink" href="#" target="_blank">📲 公式LINEに登録する</a>
+  </div>
 
-  const timestamp = new Date();
-  const ref = e.parameter.ref || "不明";
+  <script>
+    // URLパラメータからrefを取得し、GASに送信
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref") || "不明";
 
-  sheet.appendRow([timestamp, ref]);
+    fetch("https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ ref })
+    }).catch(err => {
+      console.error("送信エラー:", err);
+    });
 
-  return ContentService
-    .createTextOutput(JSON.stringify({ result: "OK" }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-function doOptions() {
-  return ContentService.createTextOutput("")
-    .setMimeType(ContentService.MimeType.TEXT)
-    .setHeader("Access-Control-Allow-Origin", "*")
-    .setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-    .setHeader("Access-Control-Allow-Headers", "Content-Type");
-}
+    // LINEリンクを設定
+    document.getElementById("lineLink").href = "https://line.me/R/ti/p/@479rnxap";
+  </script>
+</body>
+</html>
