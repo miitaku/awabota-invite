@@ -23,15 +23,16 @@
     }
 
     .friend-add {
-      width: 180px;
-      margin-bottom: 24px;
+      width: 220px;
+      max-width: 100%;
+      margin-bottom: 36px;
     }
 
     .message {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: bold;
       color: #111;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       line-height: 1.6em;
     }
 
@@ -44,7 +45,9 @@
       font-size: 1.1rem;
       font-weight: bold;
       text-decoration: none;
+      white-space: nowrap;
       transition: background 0.2s;
+      margin-top: 10px;
     }
 
     .open-btn:hover {
@@ -53,12 +56,16 @@
 
     @media screen and (max-width: 480px) {
       .friend-add {
-        width: 140px;
+        width: 180px;
+      }
+      .message {
+        font-size: 1.1rem;
+        margin-bottom: 36px;
       }
       .open-btn {
-        width: 80%;
-        padding: 14px;
-        font-size: 1rem;
+        width: 90%;
+        font-size: 1.05rem;
+        padding: 14px 0;
       }
     }
   </style>
@@ -82,7 +89,6 @@
       console.error("送信エラー:", err);
     });
 
-    // ✅ アフィリエイトリンク先
     document.getElementById("lineLink").href = "https://line.me/R/ti/p/@479rnxap";
   </script>
 </body>
