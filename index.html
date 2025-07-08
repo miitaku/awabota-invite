@@ -6,48 +6,50 @@
   <title>awabota公式LINE</title>
   <style>
     body {
-      background-color: #f0f4f7;
+      margin: 0;
+      background-color: #ffffff;
       font-family: 'Helvetica Neue', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
-      margin: 0;
-    }
-    .container {
-      background-color: #fff;
-      padding: 40px 20px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
-    .label {
-      font-size: 1.1rem;
-      color: #222;
+    .logo {
+      width: 100px;
       margin-bottom: 20px;
-      font-weight: bold;
     }
-    .line-button {
-      display: inline-block;
-      background: #06C755;
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-size: 1rem;
+    .message {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 16px 0;
+      color: #000;
+    }
+    .line-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+    .open-btn {
+      background-color: #06C755;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
       text-decoration: none;
-      font-weight: bold;
-      transition: background 0.2s;
-    }
-    .line-button:hover {
-      background: #05b14a;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="label">公式LINEに登録する</div>
-    <a class="line-button" id="lineLink" href="#" target="_blank">awabota公式LINE</a>
-  </div>
+
+  <img class="line-icon" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINEアイコン" />
+  <div class="message">LINEアプリを開いて<br>続行して下さい。</div>
+  <a class="open-btn" id="lineLink" href="#" target="_blank">LINEアプリを開く</a>
 
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -61,7 +63,9 @@
       console.error("送信エラー:", err);
     });
 
+    // ✅ アフィリエイトリンク先に差し替え（必要に応じて変更可）
     document.getElementById("lineLink").href = "https://line.me/R/ti/p/@479rnxap";
   </script>
+
 </body>
 </html>
