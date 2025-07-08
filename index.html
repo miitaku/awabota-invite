@@ -2,108 +2,62 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>awabota公式LINE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LINEアプリを開く</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body, html {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
       background-color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      font-family: sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
     }
-
     .container {
       text-align: center;
-      width: 100%;
-      max-width: 480px;
-      padding: 24px;
+      padding: 1em;
+      width: 90%;
+      max-width: 400px;
     }
-
     .line-icon {
-      width: 120px;
-      height: auto;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
-
+    .line-icon img {
+      height: 50px;
+    }
     .message {
-      font-size: 1.2rem;
+      font-size: 1.2em;
       font-weight: bold;
-      color: #111;
-      line-height: 1.6em;
-      margin-bottom: 32px;
+      color: #222;
+      margin-bottom: 40px; /* ←ここで余白を広く */
     }
-
     .open-btn {
-      display: block;
-      width: 100%;
-      max-width: 360px;
-      margin: 0 auto;
-      padding: 16px;
-      background-color: #06C755;
-      color: #fff;
-      font-size: 1.2rem;
+      background-color: #00c300;
+      color: white;
+      font-size: 1.1em;
       font-weight: bold;
+      padding: 1em 2em;
       border: none;
-      border-radius: 12px;
-      text-decoration: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .open-btn:hover {
-      opacity: 0.9;
-    }
-
-    @media (max-width: 480px) {
-      .line-icon {
-        width: 100px;
-        margin-bottom: 24px;
-      }
-      .message {
-        font-size: 1.1rem;
-        margin-bottom: 28px;
-      }
-      .open-btn {
-        font-size: 1.1rem;
-        padding: 14px;
-      }
+      border-radius: 10px;
+      width: 100%;
+      max-width: 320px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- LINE友だち追加ボタン画像 -->
-    <img class="line-icon" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINE友だち追加" />
-
-    <!-- テキストメッセージ -->
+    <div class="line-icon">
+      <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINE友だち追加" />
+    </div>
     <div class="message">
       LINEアプリを開いて<br>続行して下さい。
     </div>
-
-    <!-- 開くボタン -->
-    <a class="open-btn" id="lineLink" href="#" target="_blank">LINEアプリを開く</a>
+    <button class="open-btn" onclick="window.location.href='https://line.me'">
+      LINEアプリを開く
+    </button>
   </div>
-
-  <script>
-    // URLパラメータ取得＆記録
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get("ref") || "不明";
-
-    fetch("https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ ref })
-    });
-
-    // リンク先（LINEのURL）
-    document.getElementById("lineLink").href = "https://line.me/R/ti/p/@479rnxap";
-  </script>
 </body>
 </html>
