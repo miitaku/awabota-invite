@@ -6,50 +6,69 @@
   <title>awabota公式LINE</title>
   <style>
     body {
-      margin: 0;
       background-color: #ffffff;
       font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
+    }
+
+    .container {
       text-align: center;
+      max-width: 400px;
+      padding: 20px;
     }
-    .logo {
-      width: 100px;
-      margin-bottom: 20px;
+
+    .friend-add {
+      width: 180px;
+      margin-bottom: 24px;
     }
+
     .message {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 16px 0;
-      color: #000;
-    }
-    .line-icon {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 20px;
-    }
-    .open-btn {
-      background-color: #06C755;
-      color: white;
-      border: none;
-      padding: 16px 32px;
-      border-radius: 8px;
       font-size: 1.1rem;
       font-weight: bold;
-      margin-top: 20px;
-      cursor: pointer;
+      color: #111;
+      margin-bottom: 30px;
+      line-height: 1.6em;
+    }
+
+    .open-btn {
+      display: inline-block;
+      background-color: #06C755;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
       text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .open-btn:hover {
+      background-color: #05b14a;
+    }
+
+    @media screen and (max-width: 480px) {
+      .friend-add {
+        width: 140px;
+      }
+      .open-btn {
+        width: 80%;
+        padding: 14px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <img class="line-icon" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINEアイコン" />
-  <div class="message">LINEアプリを開いて<br>続行して下さい。</div>
-  <a class="open-btn" id="lineLink" href="#" target="_blank">LINEアプリを開く</a>
+  <div class="container">
+    <img class="friend-add" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" />
+    <div class="message">LINEアプリを開いて<br>続行して下さい。</div>
+    <a class="open-btn" id="lineLink" href="#" target="_blank">LINEアプリを開く</a>
+  </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -63,9 +82,8 @@
       console.error("送信エラー:", err);
     });
 
-    // ✅ アフィリエイトリンク先に差し替え（必要に応じて変更可）
+    // ✅ アフィリエイトリンク先
     document.getElementById("lineLink").href = "https://line.me/R/ti/p/@479rnxap";
   </script>
-
 </body>
 </html>
