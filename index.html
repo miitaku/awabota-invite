@@ -2,62 +2,74 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LINEアプリを開く</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LINE招待ページ</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
+      background-color: #ffffff;
       font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      text-align: center;
+      padding: 2em 1em;
     }
     .container {
-      text-align: center;
-      padding: 1em;
-      width: 90%;
-      max-width: 400px;
+      background: #fff;
+      padding: 2em;
+      border-radius: 10px;
+      max-width: 460px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 1.8em;
+      line-height: 1.6em;
     }
     .line-icon {
-      margin-bottom: 20px;
-    }
-    .line-icon img {
-      height: 50px;
-    }
-    .message {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #222;
-      margin-bottom: 40px; /* ←ここで余白を広く */
+      width: 120px;
+      margin-bottom: 1.5em;
     }
     .open-btn {
-      background-color: #00c300;
+      background-color: #00C300;
       color: white;
       font-size: 1.1em;
-      font-weight: bold;
-      padding: 1em 2em;
+      padding: 14px 24px;
       border: none;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 320px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="line-icon">
-      <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINE友だち追加" />
-    </div>
-    <div class="message">
-      LINEアプリを開いて<br>続行して下さい。
-    </div>
-    <button class="open-btn" onclick="window.location.href='https://line.me'">
-      LINEアプリを開く
-    </button>
+    <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINE友だち追加" class="line-icon" />
+    <h1>LINEアプリを開いて<br>続行してください。</h1>
+    <a id="lineLink" class="open-btn" href="#">LINEアプリを開く</a>
   </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get("ref") || "不明";
+
+      // スプレッドシートへ送信
+      fetch("https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ ref })
+      }).catch(err => {
+        console.error("送信エラー:", err);
+      });
+
+      // LINE公式アカウントに遷移させるリンクにrefを付加
+      const lineLink = document.getElementById("lineLink");
+      lineLink.href = `https://line.me/R/ti/p/@479rnxap?ref=${encodeURIComponent(ref)}`;
+      lineLink.onclick = () => {
+        window.location.href = lineLink.href;
+      };
+    });
+  </script>
 </body>
 </html>
