@@ -3,51 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LINE登録ページ</title>
+  <title>awabota 公式LINE</title>
   <style>
     body {
-      background-color: #eaf6fb;
-      font-family: sans-serif;
+      background-color: #f0f4f7;
+      font-family: 'Helvetica Neue', sans-serif;
       text-align: center;
-      padding: 2em 1em;
+      margin: 0;
+      padding: 60px 20px;
     }
     .container {
-      background: #fff;
-      padding: 2em;
-      border-radius: 10px;
-      max-width: 460px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #fff;
+      padding: 40px 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
-    h1 {
-      font-size: 1.5em;
-      color: #333; /* 黒に近いグレー */
-      margin-bottom: 1em;
-      line-height: 1.6em;
-      white-space: pre-line;
-    }
-    .arrow {
-      font-size: 2em;
-      margin: 0.5em 0 1.2em;
-      color: #888; /* グレー */
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
     }
     .line-button {
       display: inline-block;
       background: #06C755;
       color: #fff;
-      padding: 1em 2em;
-      border-radius: 8px;
-      font-size: 1em;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
       text-decoration: none;
-      margin-top: 1em;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .line-button:hover {
+      background: #05b14a;
+    }
+    p {
+      color: #333;
+      font-size: 1rem;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>ここまでご覧いただき<br>ありがとうございます</h1>
-    <div class="arrow">▼</div>
-    <a class="line-button" id="lineLink" href="#" target="_blank">公式LINEに登録する</a>
+    <img class="logo" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINEで登録">
+    <a class="line-button" id="lineLink" href="#" target="_blank">awabota公式LINEに登録する</a>
+    <p>登録は無料・1分で完了します</p>
   </div>
 
   <script>
