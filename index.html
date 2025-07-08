@@ -25,7 +25,7 @@
     .friend-add {
       width: 220px;
       max-width: 100%;
-      margin-bottom: 36px;
+      margin-bottom: 16px; /* ← 感覚を狭く */
     }
 
     .message {
@@ -40,14 +40,14 @@
       display: inline-block;
       background-color: #06C755;
       color: white;
-      padding: 16px 32px;
+      padding: 16px 40px;
       border-radius: 10px;
       font-size: 1.1rem;
       font-weight: bold;
       text-decoration: none;
       white-space: nowrap;
       transition: background 0.2s;
-      margin-top: 10px;
+      min-width: 260px; /* ← 横に広く */
     }
 
     .open-btn:hover {
@@ -58,14 +58,17 @@
       .friend-add {
         width: 180px;
       }
+
       .message {
         font-size: 1.1rem;
         margin-bottom: 36px;
       }
+
       .open-btn {
         width: 90%;
         font-size: 1.05rem;
         padding: 14px 0;
+        min-width: unset;
       }
     }
   </style>
