@@ -10,7 +10,7 @@
   <meta property="og:title" content="awabota公式｜LINE登録特典ページ">
   <meta property="og:description" content="今だけ限定PDFを無料プレゼント。登録後すぐLINEで届きます。">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/images/line-ogp.jpg"><!-- ここを存在する画像に変更 -->
+  <meta property="og:image" content="/images/line-ogp.jpg">
   <meta name="theme-color" content="#105a8e">
 
   <style>
@@ -22,7 +22,7 @@
     body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif; color:var(--ink); background:#fff;}
     .wrap{max-width:640px; margin:auto; padding:20px 16px 96px;}
     .brand{ display:flex; align-items:center; gap:12px; padding:12px 10px; margin:4px auto 10px; border-radius:12px;}
-    .brand img.logo{width:46px; height:46px; object-fit:contain;}
+    .brand img.logo{width:50px; height:50px; object-fit:contain;}
     .brand .meta{line-height:1.25}
     .badge{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);}
     .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
@@ -53,7 +53,7 @@
   <main class="wrap">
     <!-- 公式ヘッダー -->
     <div class="brand">
-      <img class="logo" src="/images/awabotalogo.jpg" alt="awabota公式ロゴ"><!-- ロゴが無ければ別画像でもOK -->
+      <img class="logo" src="/images/awabotalogo.jpg" alt="awabota公式ロゴ">
       <div class="meta">
         <div class="badge">✅ awabota 公式</div>
         <div style="font-size:.9rem; color:#506070; margin-top:4px;">LINE登録特典のご案内ページ</div>
@@ -68,10 +68,8 @@
         登録後すぐにLINEでお届けします。
       </p>
 
-      <!-- 👇 ここを実ファイルに差し替え -->
       <!-- 特典PDFイメージ（Lite (1).jpg がPDF画像） -->
       <img class="shot" src="/images/Lite%20(1).jpg" alt="特典PDFのイメージ">
-      <!-- ↑ファイル名にスペースがあるため %20 を含めています -->
 
       <p class="lead" style="margin-top:6px">
         このPDFでは、<b>変化の時代に「迷子」にならない考え方</b>や、<br>
@@ -82,10 +80,7 @@
     <!-- LINE中身サンプル -->
     <section class="section">
       <h2>📩 実際の配信イメージ（登録後すぐ届きます）</h2>
-
-      <!-- 実際のLINEやり取り（Lite.jpg がLINE画像） -->
       <img class="shot" src="/images/Lite.jpg" alt="LINEトーク画面のサンプル">
-
       <div class="trust">
         <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
         <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
@@ -144,12 +139,12 @@
       const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
 
       const cta = document.getElementById('ctaBtn');
-      cta.href = httpsURL; // 直接タップでもOK
+      cta.href = httpsURL;
 
       cta.addEventListener('click', (e)=>{
         e.preventDefault();
-        setTimeout(()=>{ location.href = httpsURL; }, 1200); // フォールバック
-        location.href = deepURL; // アプリ優先
+        setTimeout(()=>{ location.href = httpsURL; }, 1200);
+        location.href = deepURL;
         setTimeout(()=>{ try{ window.open(httpsURL, '_self'); }catch(_){} }, 1800);
       });
 
