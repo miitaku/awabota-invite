@@ -20,7 +20,7 @@
     }
     *{box-sizing:border-box}
     body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif; color:var(--ink); background:#fff;}
-    .wrap{max-width:640px; margin:auto; padding:20px 16px 96px;}
+    .wrap{max-width:640px; margin:auto; padding:20px 16px 120px;}
     .brand{ display:flex; align-items:center; gap:12px; padding:12px 10px; margin:4px auto 10px; border-radius:12px;}
     .brand img.logo{width:50px; height:50px; object-fit:contain;}
     .brand .meta{line-height:1.25}
@@ -41,12 +41,11 @@
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
     .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
 
+    /* 固定CTA */
     .cta{ position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px;}
     .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
     .cta p{margin:0; font-size:.92rem; color:#444}
-    .btn{ appearance:none; border:0; cursor:pointer; text-decoration:none; user-select:none; padding:14px 18px; border-radius:12px; font-weight:800; font-size:1rem; line-height:1; display:inline-flex; align-items:center; gap:10px; box-shadow:0 6px 16px rgba(0,195,0,.22); background:var(--line); color:#fff;}
-    .btn.small{padding:10px 12px; font-size:.94rem; box-shadow:none}
-    .sub{font-size:.82rem; color:var(--muted); margin-top:6px}
+    .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
     @media (min-width:640px){ h1{font-size:1.38rem} }
   </style>
 </head>
@@ -110,49 +109,74 @@
     </section>
   </main>
 
-  <!-- 固定CTA -->
+  <!-- 固定CTA：画像バナーでタップ計測 -->
   <div class="cta">
     <div class="row">
       <p>LINEで友だち追加して、特典PDFを受け取る</p>
-      <a id="ctaBtn" class="btn" href="#">
-        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="" style="height:18px">
-        友だち追加する
+      <a id="ctaBtn" href="#">
+        <img class="cta-img" src="/images/line-logo.jpg" alt="友だち追加">
       </a>
     </div>
+  </div>
 
   <script>
     (function(){
+      const GAS_URL = "https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec";
+
       const params = new URLSearchParams(location.search);
       const ref = params.get('ref') || '不明';
 
-      // 紹介者表示（あれば）
+      // 紹介者表示（任意）
       const refView = document.getElementById('refView');
       if (params.get('ref')) {
         refView.style.display = 'inline-flex';
         refView.textContent = `紹介者：${ref}`;
       }
 
-      // ログ送信（GAS）
-      fetch("https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec",{
-        method:"POST",
-        headers:{"Content-Type":"application/x-www-form-urlencoded"},
-        body:new URLSearchParams({ ref, ua:navigator.userAgent, ts:Date.now() })
-      }).catch(()=>{});
-
-      // LINEリンク
-      const LINE_ID = "@479rnxap";
+      // LINEリンク（deep link → https fallback）
+      const LINE_ID  = "@479rnxap";
       const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref)}`;
       const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
 
       const cta = document.getElementById('ctaBtn');
       cta.href = httpsURL;
 
+      // ---- クリック時だけrefをGASへ記録 ----
+      function sendRefOnClick(){
+        const payload = new URLSearchParams({
+          ref,
+          event: 'cta_click',
+          ts: String(Date.now()),
+          ua: navigator.userAgent
+        }).toString();
+
+        // sendBeacon（中断されにくい）
+        let sent = false;
+        if (navigator.sendBeacon) {
+          sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
+        }
+        // 失敗/非対応の保険
+        if (!sent) {
+          try {
+            fetch(GAS_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: payload,
+              keepalive: true
+            });
+          } catch (e) {}
+        }
+      }
+
       cta.addEventListener('click', (e)=>{
         e.preventDefault();
-        setTimeout(()=>{ location.href = httpsURL; }, 1200);
+        // 計測を即送信（待たずに遷移開始）
+        sendRefOnClick();
+
+        // アプリ優先 → 失敗時は https へ
         location.href = deepURL;
-        setTimeout(()=>{ try{ window.open(httpsURL, '_self'); }catch(_){} }, 1800);
-      })
+        setTimeout(()=>{ location.href = httpsURL; }, 900);
+      });
 
       // 特典PDF画像フォールバック
       const pdfImg = document.getElementById('pdfImg');
