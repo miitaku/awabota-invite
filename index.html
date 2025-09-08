@@ -26,9 +26,10 @@
     .brand .meta{line-height:1.25}
     .badge{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);}
     .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
-    h1{font-size:1.28rem; margin:0 0 8px; line-height:1.45}
+    h1{font-size:1.28rem; margin:0 0 8px; line-height:1.35; text-wrap:balance; word-break:keep-all; -webkit-hyphens:none; hyphens:none;}
     .lead{font-size:1rem; color:var(--ink); line-height:1.8}
     .lead b{color:#c60000}
+    .em-red{color:#c60000; font-weight:800; background:linear-gradient(transparent 70%, #ffe6e6 0); padding:0 2px;}
     .shot{ width:100%; display:block; border:1px solid #eee; border-radius:12px; margin:14px 0; }
     .section{ border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;}
     .section h2{font-size:1.05rem; margin:0 0 10px;}
@@ -55,42 +56,41 @@
     <div class="brand">
       <img class="logo" src="/images/awabotalogo.jpg" alt="awabota公式ロゴ">
       <div class="meta">
-        <div class="badge">awabota 公式</div>
+        <div class="badge">✅ awabota 公式</div>
         <div style="font-size:.9rem; color:#506070; margin-top:4px;">LINE登録特典のご案内ページ</div>
       </div>
     </div>
 
     <!-- ヒーロー -->
     <section class="hero">
-      <h1>🔵 今だけ限定｜<br>
-        <span style="color:#c60000; font-weight:bold;">LINE登録で特典PDFを無料プレゼント</span>
+      <h1>
+        🔵 今だけ限定｜<wbr>
+        <span class="em-red">LINE登録で<wbr>特典PDFを<wbr>無料プレゼント</span>
       </h1>
       <p class="lead">
-        公式LINEにご登録いただいた方へ、<b>「新しい人生を得るための第一歩」</b>となる特別PDFをプレゼント中！<br>
-        登録後すぐにLINEでお届けします。
+        公式LINEにご登録いただいた方へ、
+        <span class="em-red">「新しい人生を得るための第一歩」</span>となる特別PDFをプレゼント中。登録後すぐにLINEでお届けします。
       </p>
 
       <!-- 特典PDFイメージ -->
       <picture>
-        <source srcset="/images/tokuten.jpg?v=2" type="image/jpeg">
+        <source srcset="/images/tokuten.jpg?v=3" type="image/jpeg">
         <img id="pdfImg"
              class="shot"
-             src="/images/tokuten.jpg?v=2"
-             alt="特典PDFのイメージ"
+             src="/images/tokuten.jpg?v=3"
+             alt="特典PDFのサンプルスライド（3枚）"
              loading="eager" />
       </picture>
 
       <p class="lead" style="margin-top:6px">
-        このPDFでは<br>変化の時代に「迷子」にならない考え方<br>
-        個人がデジタルプラットフォームを活用して未来を切り拓く方法<br>
-        解説
+        このPDFでは、変化の時代に「迷子」にならない考え方や、個人がデジタルプラットフォームを活用して未来を切り拓く方法を、やさしく解説します。
       </p>
     </section>
 
     <!-- LINE中身サンプル -->
     <section class="section">
       <h2>🔵 実際の配信イメージ（登録後すぐ届きます）</h2>
-      <img class="shot" src="/images/Lite.jpg?v=2" alt="LINEトーク画面のサンプル">
+      <img class="shot" src="/images/Lite.jpg?v=3" alt="LINEトーク画面のサンプル">
       <div class="trust">
         <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
         <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
@@ -143,7 +143,7 @@
         body:new URLSearchParams({ ref, ua:navigator.userAgent, ts:Date.now() })
       }).catch(()=>{});
 
-      // LINEリンク（deep link → fallback）
+      // LINEリンク
       const LINE_ID = "@479rnxap";
       const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref)}`;
       const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
@@ -172,7 +172,7 @@
       // 特典PDF画像フォールバック
       const pdfImg = document.getElementById('pdfImg');
       pdfImg.onerror = function () {
-        pdfImg.src = '/images/Lite%20(1).jpg?v=2';
+        pdfImg.src = '/images/Lite%20(1).jpg?v=3';
       };
     })();
   </script>
