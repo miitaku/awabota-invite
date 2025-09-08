@@ -3,33 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LINE招待ページ</title>
+  <title>LINE特典プレゼントページ｜awabota</title>
   <style>
     body {
       background-color: #ffffff;
       font-family: sans-serif;
       text-align: center;
       padding: 2em 1em;
+      color: #333;
     }
     .container {
       background: #fff;
       padding: 2em;
       border-radius: 10px;
-      max-width: 460px;
+      max-width: 500px;
       margin: auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h1 {
-      font-size: 1.5em;
-      color: #333;
-      margin-bottom: 1.8em;
-      line-height: 1.6em;
+      font-size: 1.4em;
+      color: #0a0a0a;
+      margin-bottom: 1em;
     }
-    .line-icon {
-      width: 120px;
-      margin-bottom: 1.5em;
+    p {
+      font-size: 1.05em;
+      line-height: 1.7em;
+      margin-bottom: 1em;
     }
-    .open-btn {
+    .highlight {
+      color: #d20000;
+      font-weight: bold;
+    }
+    .green-btn {
       background-color: #00C300;
       color: white;
       font-size: 1.1em;
@@ -39,14 +44,53 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
+      margin-top: 1.5em;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 1em;
+    }
+    .image-preview {
+      max-width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin: 1em 0;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINE友だち追加" class="line-icon" />
-    <h1>LINEアプリを開いて<br>続行してください。</h1>
-    <a id="lineLink" class="open-btn" href="#">LINEアプリを開く</a>
+    <h1>🎁今だけ限定｜LINE登録特典PDFプレゼント</h1>
+
+    <p>
+      公式LINEにご登録いただいた方に、<br>
+      <span class="highlight">「新しい人生を得るための第一歩」となる特別PDF</span>を無料でプレゼント中！
+    </p>
+
+    <img src="PDFイメージ画像のURL（任意）" alt="特典PDFの内容" class="image-preview" />
+
+    <p>
+      このPDFでは、<strong>変化の時代に「迷子」にならないために必要な考え方</strong>や、<br>
+      個人がデジタルプラットフォームを活用して未来を切り拓く方法が詳しく解説されています。
+    </p>
+
+    <p>
+      LINEでは、こんな配信が届きます👇
+    </p>
+    <img src="LINEトーク画面スクショのURL（任意）" alt="LINEの中身サンプル" class="image-preview" />
+
+    <p>
+      🌱 副業や働き方に迷っている方<br>
+      🌱 今の収入に不安がある方<br>
+      🌱 自由なライフスタイルを目指したい方
+    </p>
+
+    <p class="highlight">＼いますぐLINEで特典を受け取る／</p>
+
+    <a id="lineLink" class="green-btn" href="#">LINEで登録して特典を受け取る</a>
+
+    <p class="note">※登録後すぐにPDFと案内がLINEで届きます。</p>
   </div>
 
   <script>
@@ -63,12 +107,9 @@
         console.error("送信エラー:", err);
       });
 
-      // LINE公式アカウントに遷移させるリンクにrefを付加
+      // LINEリンクにrefを付加
       const lineLink = document.getElementById("lineLink");
       lineLink.href = `https://line.me/R/ti/p/@479rnxap?ref=${encodeURIComponent(ref)}`;
-      lineLink.onclick = () => {
-        window.location.href = lineLink.href;
-      };
     });
   </script>
 </body>
