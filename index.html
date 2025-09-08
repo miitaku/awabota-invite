@@ -2,115 +2,204 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LINE特典プレゼントページ｜awabota</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>awabota公式｜LINE登録特典ページ</title>
+
+  <!-- Brand / SEO -->
+  <meta name="description" content="awabota公式のLINE登録特典ページ。今だけ限定PDFをプレゼント。副業・AI・Web5の実例と始め方を配信。">
+  <meta property="og:title" content="awabota公式｜LINE登録特典ページ">
+  <meta property="og:description" content="今だけ限定PDFを無料プレゼント。登録後すぐLINEで届きます。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/images/og-preview.png"><!-- 任意 -->
+  <meta name="theme-color" content="#105a8e">
+
   <style>
-    body {
-      background-color: #ffffff;
-      font-family: sans-serif;
-      text-align: center;
-      padding: 2em 1em;
-      color: #333;
+    :root{
+      --brand:#105a8e;        /* awabotaブルー */
+      --accent:#ff7a00;       /* awabotaオレンジ */
+      --line:#00C300;         /* LINEグリーン */
+      --ink:#222;
+      --muted:#777;
+      --radius:14px;
+      --shadow:0 8px 30px rgba(0,0,0,.08);
     }
-    .container {
-      background: #fff;
-      padding: 2em;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif;
+      color:var(--ink); background:#fff;
     }
-    h1 {
-      font-size: 1.4em;
-      color: #0a0a0a;
-      margin-bottom: 1em;
+    .wrap{max-width:640px; margin:auto; padding:20px 16px 96px;}
+    /* Header */
+    .brand{
+      display:flex; align-items:center; gap:12px; padding:12px 10px; margin:4px auto 10px; border-radius:12px;
     }
-    p {
-      font-size: 1.05em;
-      line-height: 1.7em;
-      margin-bottom: 1em;
+    .brand img.logo{width:46px; height:46px; object-fit:contain;}
+    .brand .meta{line-height:1.25}
+    .badge{
+      display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px;
+      font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);
     }
-    .highlight {
-      color: #d20000;
-      font-weight: bold;
+    .hero{
+      background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%);
+      border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:22px 18px; margin:10px 0 18px;
     }
-    .green-btn {
-      background-color: #00C300;
-      color: white;
-      font-size: 1.1em;
-      padding: 14px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 1.5em;
+    h1{font-size:1.28rem; margin:0 0 8px; line-height:1.45}
+    .lead{font-size:1rem; color:var(--ink); line-height:1.8}
+    .lead b{color:#c60000}
+    .shot{
+      width:100%; display:block; border:1px solid #eee; border-radius:12px; margin:14px 0;
     }
-    .note {
-      font-size: 0.9em;
-      color: #888;
-      margin-top: 1em;
+    .section{
+      border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;
     }
-    .image-preview {
-      max-width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin: 1em 0;
+    .section h2{font-size:1.05rem; margin:0 0 10px;}
+    ul.benefits{list-style:none; padding:0; margin:0}
+    ul.benefits li{display:flex; gap:8px; padding:8px 0; border-top:1px dashed #eee}
+    ul.benefits li:first-child{border-top:0}
+    .icon{font-size:1.1rem}
+    .refchip{
+      display:inline-flex; align-items:center; gap:6px; background:#f4f7fb; color:#456; font-size:.86rem;
+      padding:6px 10px; border-radius:999px; border:1px solid #e6edf6; margin-top:8px;
     }
+    .trust{
+      display:grid; gap:8px; grid-template-columns:repeat(2,1fr);
+    }
+    .trust .card{
+      border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff;
+      font-size:.9rem;
+    }
+
+    /* CTA */
+    .cta{
+      position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06);
+      padding:12px 16px;
+    }
+    .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
+    .cta p{margin:0; font-size:.92rem; color:#444}
+    .btn{
+      appearance:none; border:0; cursor:pointer; text-decoration:none; user-select:none;
+      padding:14px 18px; border-radius:12px; font-weight:800; font-size:1rem; line-height:1;
+      display:inline-flex; align-items:center; gap:10px; box-shadow:0 6px 16px rgba(0,195,0,.22);
+      background:var(--line); color:#fff;
+    }
+    .btn.small{padding:10px 12px; font-size:.94rem; box-shadow:none}
+    .sub{font-size:.82rem; color:var(--muted); margin-top:6px}
+    @media (min-width:640px){ h1{font-size:1.38rem} }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎁今だけ限定｜LINE登録特典PDFプレゼント</h1>
+  <main class="wrap">
+    <!-- 公式ヘッダー -->
+    <div class="brand">
+      <img class="logo" src="/images/awabota-logo.png" alt="awabota公式ロゴ"><!-- 置き換え -->
+      <div class="meta">
+        <div class="badge">✅ awabota 公式</div>
+        <div style="font-size:.9rem; color:#506070; margin-top:4px;">LINE登録特典のご案内ページ</div>
+      </div>
+    </div>
 
-    <p>
-      公式LINEにご登録いただいた方に、<br>
-      <span class="highlight">「新しい人生を得るための第一歩」となる特別PDF</span>を無料でプレゼント中！
-    </p>
+    <!-- ヒーロー -->
+    <section class="hero">
+      <h1>🎁 今だけ限定｜LINE登録で「特典PDF」無料プレゼント</h1>
+      <p class="lead">
+        公式LINEにご登録いただいた方へ、<b>「新しい人生を得るための第一歩」</b>となる特別PDFをプレゼント中！<br>
+        登録後すぐにLINEでお届けします。
+      </p>
+      <!-- PDFイメージ（差し替え） -->
+      <img class="shot" src="/images/pdf-sample.png" alt="特典PDFのイメージ">
+      <p class="lead" style="margin-top:6px">
+        このPDFでは、<b>変化の時代に「迷子」にならない考え方</b>や、<br>
+        <b>個人がデジタルプラットフォームを活用して未来を切り拓く方法</b>をやさしく解説。
+      </p>
+    </section>
 
-    <img src="PDFイメージ画像のURL（任意）" alt="特典PDFの内容" class="image-preview" />
+    <!-- LINE中身サンプル -->
+    <section class="section">
+      <h2>📩 実際の配信イメージ（登録後すぐ届きます）</h2>
+      <img class="shot" src="/images/line-chat-sample.png" alt="LINEトーク画面のサンプル"><!-- 差し替え -->
+      <div class="trust">
+        <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
+        <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
+      </div>
+    </section>
 
-    <p>
-      このPDFでは、<strong>変化の時代に「迷子」にならないために必要な考え方</strong>や、<br>
-      個人がデジタルプラットフォームを活用して未来を切り拓く方法が詳しく解説されています。
-    </p>
+    <!-- こんな人に -->
+    <section class="section">
+      <h2>🌱 こんな方におすすめ</h2>
+      <ul class="benefits">
+        <li><span class="icon">✅</span> 副業や働き方に迷っている</li>
+        <li><span class="icon">✅</span> 今の収入に不安がある</li>
+        <li><span class="icon">✅</span> 自由なライフスタイルを目指したい</li>
+      </ul>
+      <div id="refView" class="refchip" style="display:none"></div>
+      <div class="sub">※ 紹介リンク経由の登録は自動でカウントされます。</div>
+    </section>
 
-    <p>
-      LINEでは、こんな配信が届きます👇
-    </p>
-    <img src="LINEトーク画面スクショのURL（任意）" alt="LINEの中身サンプル" class="image-preview" />
+  </main>
 
-    <p>
-      🌱 副業や働き方に迷っている方<br>
-      🌱 今の収入に不安がある方<br>
-      🌱 自由なライフスタイルを目指したい方
-    </p>
-
-    <p class="highlight">＼いますぐLINEで特典を受け取る／</p>
-
-    <a id="lineLink" class="green-btn" href="#">LINEで登録して特典を受け取る</a>
-
-    <p class="note">※登録後すぐにPDFと案内がLINEで届きます。</p>
+  <!-- 固定CTA -->
+  <div class="cta">
+    <div class="row">
+      <p>LINEで友だち追加して、特典PDFを受け取る</p>
+      <a id="ctaBtn" class="btn" href="#">
+        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="" style="height:18px">
+        友だち追加する
+      </a>
+    </div>
+    <div class="row" style="margin-top:6px; justify-content:flex-end">
+      <button id="copyUrl" class="btn small" style="background:#e9f3ff; color:#0b4e8a;">紹介リンクをコピー</button>
+    </div>
   </div>
 
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const ref = params.get("ref") || "不明";
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const ref = params.get('ref') || '不明';
 
-      // スプレッドシートへ送信
-      fetch("https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ ref })
-      }).catch(err => {
-        console.error("送信エラー:", err);
+      // 紹介者表示（あれば）
+      const refView = document.getElementById('refView');
+      if (params.get('ref')) {
+        refView.style.display = 'inline-flex';
+        refView.textContent = `紹介者：${ref}`;
+      }
+
+      // ログ送信（GAS）
+      fetch("https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:new URLSearchParams({ ref, ua:navigator.userAgent, ts:Date.now() })
+      }).catch(()=>{});
+
+      // LINEリンク（deep link → fallback）
+      const LINE_ID = "@479rnxap"; // あなたの公式ID
+      const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref)}`;
+      const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
+
+      const cta = document.getElementById('ctaBtn');
+      cta.href = httpsURL; // 直接タップでもOK
+
+      // アプリ優先起動 → 失敗時は https へ
+      cta.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const fallback = setTimeout(()=>{ location.href = httpsURL; }, 1200);
+        // iOS/Safariの制限を考慮して try を分岐
+        location.href = deepURL;
+        // さらに安全策：1.8秒で二重フォールバック
+        setTimeout(()=>{ try{ window.open(httpsURL, '_self'); }catch(_){} }, 1800);
       });
 
-      // LINEリンクにrefを付加
-      const lineLink = document.getElementById("lineLink");
-      lineLink.href = `https://line.me/R/ti/p/@479rnxap?ref=${encodeURIComponent(ref)}`;
-    });
+      // 紹介URLコピー
+      document.getElementById('copyUrl').addEventListener('click', async ()=>{
+        const url = `${location.origin}${location.pathname}?ref=${encodeURIComponent(ref)}`;
+        try{
+          await navigator.clipboard.writeText(url);
+          alert('紹介リンクをコピーしました！\n' + url);
+        }catch{
+          prompt('コピーできない場合は手動で選択してコピーしてください', url);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
