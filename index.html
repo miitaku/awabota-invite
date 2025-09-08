@@ -73,10 +73,10 @@
 
       <!-- 特典PDFイメージ -->
       <picture>
-        <source srcset="/images/tokuten.jpg?v=3" type="image/jpeg">
+        <source srcset="/images/tokuten.jpg?v=4" type="image/jpeg">
         <img id="pdfImg"
              class="shot"
-             src="/images/tokuten.jpg?v=3"
+             src="/images/tokuten.jpg?v=4"
              alt="特典PDFのサンプルスライド（3枚）"
              loading="eager" />
       </picture>
@@ -89,7 +89,7 @@
     <!-- LINE中身サンプル -->
     <section class="section">
       <h2>🔵 実際の配信イメージ（登録後すぐ届きます）</h2>
-      <img class="shot" src="/images/Lite.jpg?v=3" alt="LINEトーク画面のサンプル">
+      <img class="shot" src="/images/Lite.jpg?v=4" alt="LINEトーク画面のサンプル">
       <div class="trust">
         <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
         <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
@@ -105,6 +105,8 @@
         <li><span class="icon">✅</span> 自由なライフスタイルを目指したい</li>
       </ul>
       <div id="refView" class="refchip" style="display:none"></div>
+      <div class="sub">※ 紹介リンク経由の登録は自動でカウントされます。</div>
+    </section>
   </main>
 
   <!-- 固定CTA：画像バナーでタップ計測 -->
@@ -112,7 +114,7 @@
     <div class="row">
       <p>友だち追加して特典PDFを受け取る</p>
       <a id="ctaBtn" href="#">
-        <img class="cta-img" src="/images/line-logo.jpg" alt="友だち追加">
+        <img class="cta-img" src="/images/awabotaline.jpg" alt="友だち追加">
       </a>
     </div>
   </div>
@@ -139,7 +141,7 @@
       const cta = document.getElementById('ctaBtn');
       cta.href = httpsURL;
 
-      // ---- クリック時だけrefをGASへ記録 ----
+      // クリック時だけ ref をGASへ記録（sendBeacon優先）
       function sendRefOnClick(){
         const payload = new URLSearchParams({
           ref,
@@ -148,12 +150,10 @@
           ua: navigator.userAgent
         }).toString();
 
-        // sendBeacon（中断されにくい）
         let sent = false;
         if (navigator.sendBeacon) {
           sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
         }
-        // 失敗/非対応の保険
         if (!sent) {
           try {
             fetch(GAS_URL, {
@@ -168,7 +168,7 @@
 
       cta.addEventListener('click', (e)=>{
         e.preventDefault();
-        // 計測を即送信（待たずに遷移開始）
+        // 記録送信（待たずに遷移開始）
         sendRefOnClick();
 
         // アプリ優先 → 失敗時は https へ
@@ -179,7 +179,7 @@
       // 特典PDF画像フォールバック
       const pdfImg = document.getElementById('pdfImg');
       pdfImg.onerror = function () {
-        pdfImg.src = '/images/Lite%20(1).jpg?v=3';
+        pdfImg.src = '/images/Lite%20(1).jpg?v=4';
       };
     })();
   </script>
