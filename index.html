@@ -63,14 +63,23 @@
     <!-- ヒーロー -->
     <section class="hero">
       <h1>🎁 今だけ限定｜<br>
-<span style="color:#c60000; font-weight:bold;">LINE登録で特典PDFを無料プレゼント</span><br></h1>
+        <span style="color:#c60000; font-weight:bold;">LINE登録で特典PDFを無料プレゼント</span>
+      </h1>
       <p class="lead">
         公式LINEにご登録いただいた方へ、<b>「新しい人生を得るための第一歩」</b>となる特別PDFをプレゼント中！<br>
         登録後すぐにLINEでお届けします。
       </p>
 
-      <!-- 特典PDFイメージ（Lite (1).jpg がPDF画像） -->
-     <img class="shot" src="/images/tokuten.jpg" alt="特典PDFのイメージ" loading="lazy">
+      <!-- 特典PDFイメージ -->
+      <picture>
+        <source srcset="/images/tokuten.jpg?v=2" type="image/jpeg">
+        <img id="pdfImg"
+             class="shot"
+             src="/images/tokuten.jpg?v=2"
+             alt="特典PDFのイメージ"
+             loading="eager" />
+      </picture>
+
       <p class="lead" style="margin-top:6px">
         このPDFでは、<b>変化の時代に「迷子」にならない考え方</b>や、<br>
         <b>個人がデジタルプラットフォームを活用して未来を切り拓く方法</b>をやさしく解説。
@@ -80,7 +89,7 @@
     <!-- LINE中身サンプル -->
     <section class="section">
       <h2>📩 実際の配信イメージ（登録後すぐ届きます）</h2>
-      <img class="shot" src="/images/Lite.jpg" alt="LINEトーク画面のサンプル">
+      <img class="shot" src="/images/Lite.jpg?v=2" alt="LINEトーク画面のサンプル">
       <div class="trust">
         <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
         <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
@@ -158,6 +167,12 @@
           prompt('コピーできない場合は手動で選択してコピーしてください', url);
         }
       });
+
+      // 特典PDF画像フォールバック
+      const pdfImg = document.getElementById('pdfImg');
+      pdfImg.onerror = function () {
+        pdfImg.src = '/images/Lite%20(1).jpg?v=2';
+      };
     })();
   </script>
 </body>
