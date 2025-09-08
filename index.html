@@ -152,18 +152,7 @@
         setTimeout(()=>{ location.href = httpsURL; }, 1200);
         location.href = deepURL;
         setTimeout(()=>{ try{ window.open(httpsURL, '_self'); }catch(_){} }, 1800);
-      });
-
-      // 紹介URLコピー
-      document.getElementById('copyUrl').addEventListener('click', async ()=>{
-        const url = `${location.origin}${location.pathname}?ref=${encodeURIComponent(ref)}`;
-        try{
-          await navigator.clipboard.writeText(url);
-          alert('紹介リンクをコピーしました！\n' + url);
-        }catch{
-          prompt('コピーできない場合は手動で選択してコピーしてください', url);
-        }
-      });
+      })
 
       // 特典PDF画像フォールバック
       const pdfImg = document.getElementById('pdfImg');
