@@ -6,7 +6,7 @@
   <title>awabota公式｜LINE登録特典ページ</title>
 
   <!-- Brand / SEO -->
-  <meta name="description" content="awabota公式のLINE登録特典。awabotaのことがよくわかる限定動画をプレゼント。">
+  <meta name="description" content="awabota公式のLINE登録特典。awabotaがよくわかる限定動画をプレゼント。">
   <meta property="og:title" content="awabota公式｜LINE登録特典ページ">
   <meta property="og:description" content="限定動画をプレゼント。公式LINE登録後すぐ差し上げます。">
   <meta property="og:type" content="website">
@@ -21,16 +21,24 @@
     *{box-sizing:border-box}
     body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif; color:var(--ink); background:#fff;}
     .wrap{max-width:640px; margin:auto; padding:20px 16px 120px;}
+
+    /* header */
     .brand{ display:flex; align-items:center; gap:12px; padding:12px 10px; margin:4px auto 10px; border-radius:12px;}
     .brand img.logo{width:50px; height:50px; object-fit:contain;}
     .brand .meta{line-height:1.25}
     .badge{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);}
+
+    /* hero */
     .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
     h1{font-size:1.28rem; margin:0 0 8px; line-height:1.35; text-wrap:balance; word-break:keep-all; -webkit-hyphens:none; hyphens:none;}
     .lead{font-size:1rem; color:var(--ink); line-height:1.8}
     .lead b{color:#c60000}
     .em-red{color:#c60000; font-weight:800; background:linear-gradient(transparent 70%, #ffe6e6 0); padding:0 2px;}
-    .shot{ width:100%; display:block; border:1px solid #eee; border-radius:12px; margin:14px 0; }
+    .lead.tight{ text-wrap:pretty; word-break:keep-all; }
+    .spbr{ display:none; }         /* スマホだけ改行 */
+    @media (max-width:480px){ .spbr{ display:inline; } }
+
+    /* sections */
     .section{ border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;}
     .section h2{font-size:1.05rem; margin:0 0 10px;}
     ul.benefits{list-style:none; padding:0; margin:0}
@@ -41,7 +49,29 @@
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
     .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
 
-    /* 固定CTA */
+    /* slider */
+    .slider{
+      position: relative; border:1px solid #eee; border-radius:12px; overflow:hidden;
+      box-shadow: var(--shadow); background:#fff; margin:14px 0;
+    }
+    .slider .slides{ position: relative; width:100%; height:0; padding-bottom:56.25%; } /* 16:9 */
+    .slider .slide{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      opacity:0; transform:scale(1.02); transition: opacity .6s ease, transform .8s ease;
+    }
+    .slider .slide.is-active{ opacity:1; transform:scale(1); }
+    .slider .dots{ position:absolute; left:50%; bottom:10px; transform:translateX(-50%); display:flex; gap:8px; z-index:5; }
+    .slider .dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.15); cursor:pointer;}
+    .slider .dot.is-active{ background:#fff; }
+    .slider .nav{
+      position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%;
+      border:none; background:rgba(255,255,255,.75); box-shadow:0 2px 8px rgba(0,0,0,.12);
+      cursor:pointer; z-index:5; font-size:22px; line-height:34px;
+    }
+    .slider .nav.prev{ left:10px; } .slider .nav.next{ right:10px; }
+    @media (prefers-reduced-motion: reduce){ .slider .slide{ transition:none; } }
+
+    /* CTA */
     .cta{ position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px;}
     .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
     .cta p{margin:0; font-size:.92rem; color:#444}
@@ -62,31 +92,34 @@
 
     <!-- ヒーロー -->
     <section class="hero">
-     <h1>
-  🔵 今だけ限定｜<wbr>
-  <span class="em-red">LINE登録で<wbr>特典動画を<wbr>プレゼント</span>
-</h1>
+      <h1>
+        🔵 今だけ限定｜<wbr>
+        <span class="em-red">LINE登録で<wbr>特典動画を<wbr>プレゼント</span>
+      </h1>
       <p class="lead">
         公式LINEにご登録いただいた方へ、
         <span class="em-red">「新しい人生を得るための第一歩」</span>となる特別な特典をプレゼント中。登録後すぐにLINEでお届けします。
       </p>
 
-      <!-- 特典PDFイメージ -->
-      <picture>
-        <source srcset="/images/tokuten.jpg?v=4" type="image/jpeg">
-        <img id="pdfImg"
-             class="shot"
-             src="/images/tokuten.jpg?v=4"
-             alt="特典PDFのサンプルスライド（3枚）"
-             loading="eager" />
-      </picture>
+      <!-- 特典イメージ：自動スライドショー（/images/1.jpg〜4.jpg） -->
+      <div class="slider" aria-roledescription="carousel" aria-label="特典のイメージ">
+        <div class="slides">
+          <img class="slide is-active" src="/images/1.jpg?v=1" alt="特典1" loading="eager">
+          <img class="slide" src="/images/2.jpg?v=1" alt="特典2" loading="lazy">
+          <img class="slide" src="/images/3.jpg?v=1" alt="特典3" loading="lazy">
+          <img class="slide" src="/images/4.jpg?v=1" alt="特典4" loading="lazy">
+        </div>
+        <div class="dots" role="tablist" aria-label="スライド選択"></div>
+        <button class="nav prev" aria-label="前の画像">‹</button>
+        <button class="nav next" aria-label="次の画像">›</button>
+      </div>
 
-     <p class="lead tight" style="margin-top:6px">
-  あなたの「行動」が未来の「資産」に変わる秘密を公開！<br class="spbr">
-  Web5の最先端技術とAIが融合した awabota の世界で、<br class="spbr">
-  「あなたの日常の『行動』が いかにして<wbr>『世界で通用する信用』と<wbr>『未来の資産』に変わるのか」<br class="spbr">
-  その全貌をお話しします！
-</p>
+      <p class="lead tight" style="margin-top:6px">
+        あなたの「行動」が未来の「資産」に変わる秘密を公開！<br class="spbr">
+        Web5の最先端技術とAIが融合した awabota の世界で、<br class="spbr">
+        「あなたの日常の『行動』が いかにして<wbr>『世界で通用する信用』と<wbr>『未来の資産』に変わるのか」<br class="spbr">
+        その全貌をお話しします！
+      </p>
     </section>
 
     <!-- LINE中身サンプル -->
@@ -108,12 +141,13 @@
         <li><span class="icon">✅</span> 自由なライフスタイルを目指したい</li>
       </ul>
       <div id="refView" class="refchip" style="display:none"></div>
+    </section>
   </main>
 
   <!-- 固定CTA：画像バナーでタップ計測 -->
   <div class="cta">
     <div class="row">
-      <p>友だち追加して特典PDFを受け取る</p>
+      <p>友だち追加して特典を受け取る</p>
       <a id="ctaBtn" href="#">
         <img class="cta-img" src="/images/awabotaline.jpg" alt="友だち追加">
       </a>
@@ -177,11 +211,78 @@
         setTimeout(()=>{ location.href = httpsURL; }, 900);
       });
 
-      // 特典PDF画像フォールバック
+      // ===== slider logic =====
+      (function setupSlider(){
+        const root   = document.querySelector('.slider');
+        if(!root) return;
+
+        const slides = Array.from(root.querySelectorAll('.slide'));
+        const dotsWrap = root.querySelector('.dots');
+
+        // ドット自動生成
+        slides.forEach((_, idx) => {
+          const b = document.createElement('button');
+          b.className = 'dot' + (idx === 0 ? ' is-active' : '');
+          b.setAttribute('role','tab');
+          b.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+          b.setAttribute('aria-controls', `slide-${idx+1}`);
+          b.tabIndex = idx === 0 ? 0 : -1;
+          dotsWrap.appendChild(b);
+        });
+
+        const dots = Array.from(root.querySelectorAll('.dot'));
+        const prev = root.querySelector('.nav.prev');
+        const next = root.querySelector('.nav.next');
+
+        let i = 0;
+        let timer = null;
+        const INTERVAL = 3500;
+
+        function show(idx){
+          slides[i].classList.remove('is-active');
+          dots[i]?.classList.remove('is-active');
+          dots[i]?.setAttribute('aria-selected','false');
+          dots[i]?.setAttribute('tabindex','-1');
+
+          i = (idx + slides.length) % slides.length;
+
+          slides[i].classList.add('is-active');
+          dots[i]?.classList.add('is-active');
+          dots[i]?.setAttribute('aria-selected','true');
+          dots[i]?.setAttribute('tabindex','0');
+        }
+        const nextSlide = ()=> show(i+1);
+        const prevSlide = ()=> show(i-1);
+
+        function start(){ stop(); timer = setInterval(nextSlide, INTERVAL); }
+        function stop(){ if(timer) clearInterval(timer); }
+
+        dots.forEach((d, di)=> d.addEventListener('click', ()=>{ show(di); start(); }));
+        prev?.addEventListener('click', ()=>{ prevSlide(); start(); });
+        next?.addEventListener('click', ()=>{ nextSlide(); start(); });
+
+        // スワイプ
+        let sx=0, dx=0;
+        root.addEventListener('touchstart', e=>{ sx = e.touches[0].clientX; dx=0; stop(); }, {passive:true});
+        root.addEventListener('touchmove',  e=>{ dx = e.touches[0].clientX - sx; }, {passive:true});
+        root.addEventListener('touchend',   ()=>{ if(Math.abs(dx)>40){ dx<0 ? nextSlide() : prevSlide(); } start(); });
+
+        // ビューポート内のみ動作
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(en=> en.isIntersecting ? start() : stop());
+        }, {threshold:.3});
+        io.observe(root);
+
+        start();
+      })();
+
+      // 旧イメージのフォールバック（保険）
       const pdfImg = document.getElementById('pdfImg');
-      pdfImg.onerror = function () {
-        pdfImg.src = '/images/Lite%20(1).jpg?v=4';
-      };
+      if (pdfImg) {
+        pdfImg.onerror = function () {
+          pdfImg.src = '/images/Lite%20(1).jpg?v=4';
+        };
+      }
     })();
   </script>
 </body>
