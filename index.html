@@ -2,12 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <!-- セーフエリア対応 & iOSのズーム挙動安定化 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>awabota公式｜LINE登録特典ページ</title>
 
   <!-- Brand / SEO -->
-  <meta name="description" content="awabota公式のLINE登録特典。awabotaがよくわかる限定動画をプレゼント。">
+  <meta name="description" content="awabota公式のLINE登録特典。awabotaのことがよくわかる限定動画をプレゼント。">
   <meta property="og:title" content="awabota公式｜LINE登録特典ページ">
   <meta property="og:description" content="限定動画をプレゼント。公式LINE登録後すぐ差し上げます。">
   <meta property="og:type" content="website">
@@ -20,61 +19,60 @@
       --ink:#222; --muted:#777; --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
     }
     *{box-sizing:border-box}
-    html, body{ width:100%; overflow-x:hidden; -webkit-text-size-adjust:100%; }
-    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif; color:var(--ink); background:#fff; }
-    img, video, canvas, svg{ max-width:100%; height:auto; display:block; }
-
-    .wrap{
-      max-width:640px; margin:auto; padding:20px 16px 120px;
-      padding-left:  max(16px, env(safe-area-inset-left));
-      padding-right: max(16px, env(safe-area-inset-right));
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif;
+      color:var(--ink); background:#fff;
+      overflow-x:hidden;
     }
-
-    /* header */
+    img, video{max-width:100%; height:auto; display:block}
+    .wrap{max-width:640px; margin:auto; padding:20px 16px 120px;}
     .brand{ display:flex; align-items:center; gap:12px; padding:12px 10px; margin:4px auto 10px; border-radius:12px;}
     .brand img.logo{width:50px; height:50px; object-fit:contain;}
-    .brand .meta{line-height:1.25}
     .badge{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);}
-
-    /* hero */
     .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
     h1{font-size:1.28rem; margin:0 0 8px; line-height:1.35; text-wrap:balance; word-break:keep-all; -webkit-hyphens:none; hyphens:none;}
-    .lead{font-size:1rem; color:var(--ink); line-height:1.8}
-    .lead b{color:#c60000}
+    .lead{font-size:1rem; color:var(--ink); line-height:1.8; overflow-wrap:anywhere;}
     .em-red{color:#c60000; font-weight:800; background:linear-gradient(transparent 70%, #ffe6e6 0); padding:0 2px;}
-    .lead.tight{ text-wrap:pretty; word-break:keep-all; }
-    .spbr{ display:none; }         /* スマホだけ改行 */
-    @media (max-width:480px){ .spbr{ display:inline; } }
-
-    /* one-shot image card */
-    .shot-card{
-      border:1px solid #eee; border-radius:12px; overflow:hidden; box-shadow:var(--shadow);
-      margin:14px 0; background:#fff;
-    }
-
-    /* sections */
+    .shot{ width:100%; border:1px solid #eee; border-radius:12px; margin:14px 0; }
     .section{ border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;}
     .section h2{font-size:1.05rem; margin:0 0 10px;}
-    ul.benefits{list-style:none; padding:0; margin:0}
-    ul.benefits li{display:flex; gap:8px; padding:8px 0; border-top:1px dashed #eee}
-    ul.benefits li:first-child{border-top:0}
-    .icon{font-size:1.1rem}
-    .refchip{ display:inline-flex; align-items:center; gap:6px; background:#f4f7fb; color:#456; font-size:.86rem; padding:6px 10px; border-radius:999px; border:1px solid #e6edf6; margin-top:8px;}
+
+    /* スライダー */
+    .slider{
+      position:relative; overflow:hidden;
+      border:1px solid #eee; border-radius:12px; background:#fff;
+    }
+    .slides{
+      display:flex; transition:transform .5s ease; will-change:transform;
+    }
+    .slides img{width:100%; flex:0 0 100%; object-fit:cover}
+    .dots{ display:flex; gap:6px; justify-content:center; padding:10px 0; }
+    .dot{width:8px; height:8px; border-radius:50%; background:#d5e6f5}
+    .dot.active{background:#105a8e}
+
+    /* チップ/カード */
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
     .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
 
-    /* CTA（セーフエリア対応） */
-    .cta{
-      position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06);
-      padding:12px 16px;
-      padding-left:  max(12px, env(safe-area-inset-left));
-      padding-right: max(12px, env(safe-area-inset-right));
-      padding-bottom:max(12px, env(safe-area-inset-bottom));
+    /* おすすめリスト */
+    ul.benefits{list-style:none; padding:0; margin:0}
+    ul.benefits li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 0; border-top:1px dashed #eee; line-height:1.7; overflow-wrap:anywhere;
     }
-    .cta .row{max-width:640px; width:100%; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
-    .cta p{margin:0; font-size:.92rem; color:#444}
-    .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
+    ul.benefits li:first-child{border-top:0}
+    .icon{font-size:1.1rem}
 
+    /* 固定CTA */
+    .cta{
+      position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee;
+      box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px;
+    }
+    .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
+    .cta p{margin:0; font-size:.92rem; color:#444; overflow-wrap:anywhere;}
+    .cta img.cta-img{ height:60px; border-radius:12px; display:block }
     @media (min-width:640px){ h1{font-size:1.38rem} }
   </style>
 </head>
@@ -100,24 +98,32 @@
         <span class="em-red">「新しい人生を得るための第一歩」</span>となる特別な特典をプレゼント中。登録後すぐにLINEでお届けします。
       </p>
 
-      <!-- 特典イメージ：1枚のみ -->
-      <figure class="shot-card">
-        <img src="/images/1.jpg?v=2" alt="特典イメージ">
-      </figure>
+      <!-- スライドショー：/images/1.jpg ~ /images/4.jpg を自動切替 -->
+      <div class="slider" aria-label="特典イメージスライダー">
+        <div class="slides" id="slides">
+          <img src="/images/1.jpg" alt="特典スライド1">
+          <img src="/images/2.jpg" alt="特典スライド2">
+          <img src="/images/3.jpg" alt="特典スライド3">
+          <img src="/images/4.jpg" alt="特典スライド4">
+        </div>
+        <div class="dots" id="dots" aria-hidden="true">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
 
-      <p class="lead tight" style="margin-top:6px">
-        あなたの「行動」が未来の「資産」に変わる
-        秘密を公開！<br class="spbr">
-        Web5の最先端技術とAIが融合した awabota の世界で、<br class="spbr">
-        「あなたの日常の『行動』が いかにして<wbr>『世界で通用する信用』と<wbr>『未来の資産』に変わるのか」<br class="spbr">
-        その全貌をお話しします！
+      <p class="lead" style="margin-top:10px">
+        あなたの「行動」が未来の「資産」に変わる秘密を公開！Web5の最先端技術とAIが融合した awabota の世界で、<br class="spbr">
+        「あなたの日常の『行動』が いかにして『世界で通用する信用』と『未来の資産』に変わるのか」その全貌をお話しします。
       </p>
     </section>
 
-    <!-- LINE中身サンプル -->
+    <!-- 実際の配信イメージ -->
     <section class="section">
       <h2>🔵 実際の配信イメージ（登録後すぐ届きます）</h2>
-      <img class="shot-card" src="/images/Lite.jpg?v=4" alt="LINEトーク画面のサンプル">
+      <img class="shot" src="/images/Lite.jpg?v=5" alt="LINEトーク画面のサンプル">
       <div class="trust">
         <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
         <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
@@ -128,11 +134,16 @@
     <section class="section">
       <h2>🌱 こんな方におすすめ</h2>
       <ul class="benefits">
-        <li><span class="icon">✅</span> 副業や働き方に迷っている</li>
-        <li><span class="icon">✅</span> 今の収入に不安がある</li>
-        <li><span class="icon">✅</span> 自由なライフスタイルを目指したい</li>
+        <li><span class="icon">✅</span><span>副業や働き方に迷っている</span></li>
+        <li><span class="icon">✅</span><span>今の収入に不安がある</span></li>
+        <li><span class="icon">✅</span><span>自由なライフスタイルを目指したい</span></li>
+        <li><span class="icon">✅</span><span>FXや暗号通貨などの投資・副業がうまくいかない</span></li>
+        <li><span class="icon">✅</span><span>介護・育児・老後など将来への不安がある</span></li>
+        <li><span class="icon">✅</span><span>会社や事業の先行きに不安を感じている</span></li>
+        <li><span class="icon">✅</span><span>毎日忙しく、時間や心の余裕がない</span></li>
+        <li><span class="icon">✅</span><span>AI / Web3・Web5に興味はあるがどう取り入れるか分からない</span></li>
       </ul>
-      <div id="refView" class="refchip" style="display:none"></div>
+      <div id="refView" class="badge" style="display:none; margin-top:12px;"></div>
     </section>
   </main>
 
@@ -178,7 +189,9 @@
         }).toString();
 
         let sent = false;
-        if (navigator.sendBeacon) sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
+        if (navigator.sendBeacon) {
+          sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
+        }
         if (!sent) {
           try {
             fetch(GAS_URL, {
@@ -193,10 +206,35 @@
 
       cta.addEventListener('click', (e)=>{
         e.preventDefault();
-        sendRefOnClick();                  // 記録送信
-        location.href = deepURL;           // アプリ優先
+        sendRefOnClick();            // 記録送信
+        location.href = deepURL;     // アプリ優先
         setTimeout(()=>{ location.href = httpsURL; }, 900); // 失敗時フォールバック
       });
+
+      /* ====== スライドショー ====== */
+      const slidesWrap = document.getElementById('slides');
+      const dotsWrap   = document.getElementById('dots');
+      const total = slidesWrap.children.length;
+      let i = 0;
+
+      function go(n){
+        i = (n + total) % total;
+        slidesWrap.style.transform = `translateX(${-100 * i}%)`;
+        [...dotsWrap.children].forEach((d,idx)=> d.classList.toggle('active', idx===i));
+      }
+      let timer = setInterval(()=> go(i+1), 3500);
+      // タッチでスワイプ対応（簡易）
+      let startX = null;
+      slidesWrap.addEventListener('touchstart',e=>{ startX = e.touches[0].clientX; clearInterval(timer); });
+      slidesWrap.addEventListener('touchend',e=>{
+        if(startX==null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) go(i + (dx<0?1:-1));
+        timer = setInterval(()=> go(i+1), 3500);
+        startX=null;
+      });
+      // ドットで切替
+      [...dotsWrap.children].forEach((d,idx)=> d.addEventListener('click',()=>{ clearInterval(timer); go(idx); timer=setInterval(()=>go(i+1),3500); }));
     })();
   </script>
 </body>
