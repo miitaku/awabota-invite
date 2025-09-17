@@ -46,6 +46,12 @@
     .spbr{ display:none; }         /* スマホだけ改行 */
     @media (max-width:480px){ .spbr{ display:inline; } }
 
+    /* one-shot image card */
+    .shot-card{
+      border:1px solid #eee; border-radius:12px; overflow:hidden; box-shadow:var(--shadow);
+      margin:14px 0; background:#fff;
+    }
+
     /* sections */
     .section{ border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;}
     .section h2{font-size:1.05rem; margin:0 0 10px;}
@@ -56,30 +62,6 @@
     .refchip{ display:inline-flex; align-items:center; gap:6px; background:#f4f7fb; color:#456; font-size:.86rem; padding:6px 10px; border-radius:999px; border:1px solid #e6edf6; margin-top:8px;}
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
     .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
-
-    /* slider（横はみ出し対策含む） */
-    .slider{
-      position: relative; border:1px solid #eee; border-radius:12px; overflow:hidden;
-      box-shadow: var(--shadow); background:#fff; margin:14px 0;
-    }
-    .slider .slides{
-      position: relative; width:100%; height:0; padding-bottom:calc(56.25% + 2px); /* 16:9 + 誤差バッファ */
-    }
-    .slider .slide{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      opacity:0; transition: opacity .6s ease; /* transformは外してはみ出し防止 */
-    }
-    .slider .slide.is-active{ opacity:1; }
-    .slider .dots{ position:absolute; left:50%; bottom:10px; transform:translateX(-50%); display:flex; gap:8px; z-index:5; }
-    .slider .dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.15); cursor:pointer;}
-    .slider .dot.is-active{ background:#fff; }
-    .slider .nav{
-      position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%;
-      border:none; background:rgba(255,255,255,.75); box-shadow:0 2px 8px rgba(0,0,0,.12);
-      cursor:pointer; z-index:5; font-size:22px; line-height:34px;
-    }
-    .slider .nav.prev{ left:10px; } .slider .nav.next{ right:10px; }
-    @media (prefers-reduced-motion: reduce){ .slider .slide{ transition:none; } }
 
     /* CTA（セーフエリア対応） */
     .cta{
@@ -118,18 +100,10 @@
         <span class="em-red">「新しい人生を得るための第一歩」</span>となる特別な特典をプレゼント中。登録後すぐにLINEでお届けします。
       </p>
 
-      <!-- 特典イメージ：自動スライドショー（/images/1.jpg〜4.jpg） -->
-      <div class="slider" aria-roledescription="carousel" aria-label="特典のイメージ">
-        <div class="slides">
-          <img class="slide is-active" src="/images/1.jpg?v=1" alt="特典1" loading="eager">
-          <img class="slide" src="/images/2.jpg?v=1" alt="特典2" loading="lazy">
-          <img class="slide" src="/images/3.jpg?v=1" alt="特典3" loading="lazy">
-          <img class="slide" src="/images/4.jpg?v=1" alt="特典4" loading="lazy">
-        </div>
-        <div class="dots" role="tablist" aria-label="スライド選択"></div>
-        <button class="nav prev" aria-label="前の画像">‹</button>
-        <button class="nav next" aria-label="次の画像">›</button>
-      </div>
+      <!-- 特典イメージ：1枚のみ -->
+      <figure class="shot-card">
+        <img src="/images/1.jpg?v=2" alt="特典イメージ">
+      </figure>
 
       <p class="lead tight" style="margin-top:6px">
         あなたの「行動」が未来の「資産」に変わる
@@ -143,7 +117,7 @@
     <!-- LINE中身サンプル -->
     <section class="section">
       <h2>🔵 実際の配信イメージ（登録後すぐ届きます）</h2>
-      <img class="shot" src="/images/Lite.jpg?v=4" alt="LINEトーク画面のサンプル">
+      <img class="shot-card" src="/images/Lite.jpg?v=4" alt="LINEトーク画面のサンプル">
       <div class="trust">
         <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
         <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
@@ -219,75 +193,10 @@
 
       cta.addEventListener('click', (e)=>{
         e.preventDefault();
-        sendRefOnClick();                 // 記録送信
-        location.href = deepURL;          // アプリ優先
+        sendRefOnClick();                  // 記録送信
+        location.href = deepURL;           // アプリ優先
         setTimeout(()=>{ location.href = httpsURL; }, 900); // 失敗時フォールバック
       });
-
-      // ===== slider logic =====
-      (function setupSlider(){
-        const root   = document.querySelector('.slider');
-        if(!root) return;
-
-        const slides = Array.from(root.querySelectorAll('.slide'));
-        const dotsWrap = root.querySelector('.dots');
-
-        // ドット自動生成
-        slides.forEach((_, idx) => {
-          const b = document.createElement('button');
-          b.className = 'dot' + (idx === 0 ? ' is-active' : '');
-          b.setAttribute('role','tab');
-          b.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
-          b.setAttribute('aria-controls', `slide-${idx+1}`);
-          b.tabIndex = idx === 0 ? 0 : -1;
-          dotsWrap.appendChild(b);
-        });
-
-        const dots = Array.from(root.querySelectorAll('.dot'));
-        const prev = root.querySelector('.nav.prev');
-        const next = root.querySelector('.nav.next');
-
-        let i = 0;
-        let timer = null;
-        const INTERVAL = 3500;
-
-        function show(idx){
-          slides[i].classList.remove('is-active');
-          dots[i]?.classList.remove('is-active');
-          dots[i]?.setAttribute('aria-selected','false');
-          dots[i]?.setAttribute('tabindex','-1');
-
-          i = (idx + slides.length) % slides.length;
-
-          slides[i].classList.add('is-active');
-          dots[i]?.classList.add('is-active');
-          dots[i]?.setAttribute('aria-selected','true');
-          dots[i]?.setAttribute('tabindex','0');
-        }
-        const nextSlide = ()=> show(i+1);
-        const prevSlide = ()=> show(i-1);
-
-        function start(){ stop(); timer = setInterval(nextSlide, INTERVAL); }
-        function stop(){ if(timer) clearInterval(timer); }
-
-        dots.forEach((d, di)=> d.addEventListener('click', ()=>{ show(di); start(); }));
-        prev?.addEventListener('click', ()=>{ prevSlide(); start(); });
-        next?.addEventListener('click', ()=>{ nextSlide(); start(); });
-
-        // スワイプ
-        let sx=0, dx=0;
-        root.addEventListener('touchstart', e=>{ sx = e.touches[0].clientX; dx=0; stop(); }, {passive:true});
-        root.addEventListener('touchmove',  e=>{ dx = e.touches[0].clientX - sx; }, {passive:true});
-        root.addEventListener('touchend',   ()=>{ if(Math.abs(dx)>40){ dx<0 ? nextSlide() : prevSlide(); } start(); });
-
-        // ビューポート内のみ動作
-        const io = new IntersectionObserver((entries)=>{
-          entries.forEach(en=> en.isIntersecting ? start() : stop());
-        }, {threshold:.3});
-        io.observe(root);
-
-        start();
-      })();
     })();
   </script>
 </body>
