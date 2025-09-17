@@ -2,7 +2,8 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- セーフエリア対応 & iOSのズーム挙動安定化 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>awabota公式｜LINE登録特典ページ</title>
 
   <!-- Brand / SEO -->
@@ -19,8 +20,15 @@
       --ink:#222; --muted:#777; --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
     }
     *{box-sizing:border-box}
-    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif; color:var(--ink); background:#fff;}
-    .wrap{max-width:640px; margin:auto; padding:20px 16px 120px;}
+    html, body{ width:100%; overflow-x:hidden; -webkit-text-size-adjust:100%; }
+    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif; color:var(--ink); background:#fff; }
+    img, video, canvas, svg{ max-width:100%; height:auto; display:block; }
+
+    .wrap{
+      max-width:640px; margin:auto; padding:20px 16px 120px;
+      padding-left:  max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
 
     /* header */
     .brand{ display:flex; align-items:center; gap:12px; padding:12px 10px; margin:4px auto 10px; border-radius:12px;}
@@ -49,17 +57,19 @@
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
     .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
 
-    /* slider */
+    /* slider（横はみ出し対策含む） */
     .slider{
       position: relative; border:1px solid #eee; border-radius:12px; overflow:hidden;
       box-shadow: var(--shadow); background:#fff; margin:14px 0;
     }
-    .slider .slides{ position: relative; width:100%; height:0; padding-bottom:56.25%; } /* 16:9 */
+    .slider .slides{
+      position: relative; width:100%; height:0; padding-bottom:calc(56.25% + 2px); /* 16:9 + 誤差バッファ */
+    }
     .slider .slide{
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      opacity:0; transform:scale(1.02); transition: opacity .6s ease, transform .8s ease;
+      opacity:0; transition: opacity .6s ease; /* transformは外してはみ出し防止 */
     }
-    .slider .slide.is-active{ opacity:1; transform:scale(1); }
+    .slider .slide.is-active{ opacity:1; }
     .slider .dots{ position:absolute; left:50%; bottom:10px; transform:translateX(-50%); display:flex; gap:8px; z-index:5; }
     .slider .dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.6); border:1px solid rgba(0,0,0,.15); cursor:pointer;}
     .slider .dot.is-active{ background:#fff; }
@@ -71,11 +81,18 @@
     .slider .nav.prev{ left:10px; } .slider .nav.next{ right:10px; }
     @media (prefers-reduced-motion: reduce){ .slider .slide{ transition:none; } }
 
-    /* CTA */
-    .cta{ position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px;}
-    .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
+    /* CTA（セーフエリア対応） */
+    .cta{
+      position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06);
+      padding:12px 16px;
+      padding-left:  max(12px, env(safe-area-inset-left));
+      padding-right: max(12px, env(safe-area-inset-right));
+      padding-bottom:max(12px, env(safe-area-inset-bottom));
+    }
+    .cta .row{max-width:640px; width:100%; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
     .cta p{margin:0; font-size:.92rem; color:#444}
     .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
+
     @media (min-width:640px){ h1{font-size:1.38rem} }
   </style>
 </head>
@@ -147,7 +164,7 @@
   <!-- 固定CTA：画像バナーでタップ計測 -->
   <div class="cta">
     <div class="row">
-      <p>友だち追加して特典を受け取る</p>
+      <p>友だち追加して特典PDFを受け取る</p>
       <a id="ctaBtn" href="#">
         <img class="cta-img" src="/images/awabotaline.jpg" alt="友だち追加">
       </a>
@@ -186,9 +203,7 @@
         }).toString();
 
         let sent = false;
-        if (navigator.sendBeacon) {
-          sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
-        }
+        if (navigator.sendBeacon) sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
         if (!sent) {
           try {
             fetch(GAS_URL, {
@@ -203,12 +218,9 @@
 
       cta.addEventListener('click', (e)=>{
         e.preventDefault();
-        // 記録送信（待たずに遷移開始）
-        sendRefOnClick();
-
-        // アプリ優先 → 失敗時は https へ
-        location.href = deepURL;
-        setTimeout(()=>{ location.href = httpsURL; }, 900);
+        sendRefOnClick();                 // 記録送信
+        location.href = deepURL;          // アプリ優先
+        setTimeout(()=>{ location.href = httpsURL; }, 900); // 失敗時フォールバック
       });
 
       // ===== slider logic =====
@@ -275,14 +287,6 @@
 
         start();
       })();
-
-      // 旧イメージのフォールバック（保険）
-      const pdfImg = document.getElementById('pdfImg');
-      if (pdfImg) {
-        pdfImg.onerror = function () {
-          pdfImg.src = '/images/Lite%20(1).jpg?v=4';
-        };
-      }
     })();
   </script>
 </body>
