@@ -5,62 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>awabota公式｜LINE登録特典ページ</title>
 
+  <!-- 基本色など -->
   <style>
     :root{
-      --brand:#105a8e; --ink:#222;
-      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
+      --brand:#105a8e; 
+      --ink:#222;
+      --muted:#6b7280;
+      --radius:14px; 
+      --shadow:0 8px 30px rgba(0,0,0,.08);
+      --card:#f7f9fc;
     }
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"ヒラギノ角ゴ ProN","Noto Sans JP",sans-serif;
       color:var(--ink);
       background:#fff;
     }
-    .wrap{max-width:640px; margin:auto; padding:20px 16px 120px;}
+    .wrap{ max-width:640px; margin:auto; padding:20px 16px 120px; }
 
-    /* ブランドヘッダー */
+    /* =========  ブランドヘッダー  ========= */
     .brand{
       display:flex;
       align-items:center;
-      justify-content:flex-start; /* 中身は左詰め */
+      justify-content:flex-start;           /* 中身は左詰め */
       gap:14px;
       padding:14px 12px;
-      margin:4px auto 16px;       /* 外枠を中央寄せ */
+      margin:4px auto 16px;                 /* コンテナ自体は中央へ */
       border-radius:12px;
-      background:#f7f9fc;
-      width:90%;            
-      max-width:600px;      
+      background:var(--card);
+      width:90%;
+      max-width:600px;
+      box-shadow:var(--shadow);
     }
-    .brand img.logo{width:70px; height:70px; object-fit:contain;}
-
+    .brand img.logo{
+      width:70px; height:70px; object-fit:contain;
+    }
     .brand .meta{
-      display:flex; 
-      flex-direction:column; 
-      align-items:flex-start; /* 左寄せ維持 */
-      gap:6px;
-      margin-left:12px; /* 👈 テキスト部分だけ少し右へ移動 */
+      display:flex; flex-direction:column; align-items:flex-start; gap:6px;
+      margin-left:12px;                     /* ロゴとの間隔を少し広めに */
     }
     .badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:6px 14px;
-      border-radius:999px;
-      font-size:1rem;
-      font-weight:700;
-      color:#fff;
-      background:var(--brand);
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:6px 14px; border-radius:999px;
+      font-size:1rem; font-weight:700; color:#fff; background:var(--brand);
     }
     .title-text{
-      font-size:1.3rem;
-      font-weight:700;
-      color:#222;
-      text-align:left;
-      white-space:normal; /* 改行可能 */
-      line-height:1.4;
+      font-size:1.3rem; font-weight:700; color:#222;
+      text-align:left; white-space:normal; line-height:1.35;
+    }
+    @media (min-width:640px){
+      .title-text{ font-size:1.6rem; }
     }
 
-    /* ヒーロー */
+    /* =========  ヒーロー  ========= */
     .hero{
       background:#fff;
       border:1px solid #eef4fa;
@@ -69,24 +67,55 @@
       padding:22px 18px;
       margin:10px 0 18px;
     }
+    h1.entry-title{
+      font-size:1.6rem; font-weight:800; line-height:1.3;
+      margin:0 0 12px; text-align:left;
+    }
+    @media (min-width:640px){
+      h1.entry-title{ font-size:2rem; }
+    }
+    .lead{ font-size:1.2rem; line-height:1.85; color:var(--ink); }
 
-    /* H1タイトル */
-    h1.entry-title {
-      font-size:1.6rem;
-      font-weight:800;
-      text-align:left;
-      margin:0 0 16px;
-      line-height:1.3;
-    }
-    @media(min-width:640px){
-      h1.entry-title{font-size:2rem}
-      .title-text{font-size:1.6rem}
+    /* ヘッダー画像（横幅いっぱい） */
+    .header-hero img{
+      width:100%; height:auto; max-width:100%;
+      display:block; margin:16px 0; border-radius:12px;
     }
 
-    .lead{
-      font-size:1.2rem;
-      line-height:1.8;
+    /* =========  セクション  ========= */
+    .section{
+      border:1px solid #eef4fa; border-radius:var(--radius);
+      padding:16px; margin:16px 0; background:#fff; box-shadow:var(--shadow);
     }
+    .section h2{
+      font-size:1.5rem; font-weight:700; margin:0 0 12px; text-align:left;
+    }
+    ul.benefits{ list-style:none; padding:0; margin:0; }
+    ul.benefits li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 0; border-top:1px dashed #edf2f7; font-size:1.1rem;
+    }
+    ul.benefits li:first-child{ border-top:0; }
+    .icon{ font-size:1.2rem; line-height:1.2; }
+
+    .refchip{
+      display:inline-flex; align-items:center; gap:6px;
+      background:#f4f7fb; color:#456; font-size:.95rem;
+      padding:6px 10px; border-radius:999px; border:1px solid #e6edf6; margin-top:8px;
+    }
+
+    /* =========  固定CTA  ========= */
+    .cta{
+      position:fixed; left:0; right:0; bottom:0; background:#fff;
+      border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06);
+      padding:12px 16px;
+    }
+    .cta .row{
+      max-width:640px; margin:auto; display:flex; gap:10px;
+      align-items:center; justify-content:space-between;
+    }
+    .cta p{ margin:0; font-size:1rem; color:#444; }
+    .cta img.cta-img{ height:56px; border-radius:12px; display:block; }
   </style>
 </head>
 <body>
@@ -103,6 +132,7 @@
     <!-- ヒーロー -->
     <section class="hero">
       <h1 class="entry-title">🔴 なぜ「月250万円」が現実になるのか？</h1>
+
       <p class="lead">
         awabotaが10月1日からスタートした<br>
         「信用スコア」は、行動そのものを資産化する全く新しい仕組みです。<br><br>
@@ -110,10 +140,10 @@
         これら一つひとつがスコアとして蓄積され、やがて報酬や実績に直結していきます。<br><br>
         さらにDID（分散型ID）によって、このスコアは退会しても消えず、未来の活動や外部評価にまで使える“デジタル履歴”として残ります。
       </p>
-      
-      <!-- ヘッダー画像 -->
+
+      <!-- ヘッダー画像（横幅100%で自動調整） -->
       <div class="header-hero">
-        <img src="/images/S__14278663.jpg" alt="awabotaヘッダー画像">
+        <img src="/images/S__14278663.jpg" alt="awabota紹介ビジュアル">
       </div>
     </section>
 
@@ -142,10 +172,10 @@
     </div>
   </div>
 
+  <!-- クリック計測・LINE遷移 -->
   <script>
     (function(){
       const GAS_URL = "https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec";
-
       const params = new URLSearchParams(location.search);
       const ref = params.get('ref') || '不明';
 
@@ -189,6 +219,7 @@
       cta.addEventListener('click', (e)=>{
         e.preventDefault();
         sendRefOnClick();
+        // アプリへ → 失敗時は https へ
         location.href = deepURL;
         setTimeout(()=>{ location.href = httpsURL; }, 900);
       });
