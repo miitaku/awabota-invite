@@ -34,14 +34,14 @@
 
     /* H1タイトル調整 */
     h1.entry-title {
-      font-size: 1.3rem;
+      font-size: clamp(1.1rem, 4vw, 1.6rem); /* 画面サイズに応じて調整 */
       font-weight: 700;
       text-align: center;
       margin: 0 0 12px;
       line-height: 1.4;
       white-space: nowrap;       /* 折り返し禁止 */
-      overflow: hidden;          /* はみ出し非表示 */
-      text-overflow: ellipsis;   /* 長すぎたら … */
+      overflow: hidden;          /* はみ出し防止 */
+      text-overflow: ellipsis;   /* 収まらない場合は「…」 */
     }
 
     .site-description {
@@ -78,7 +78,6 @@
     .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
     .cta p{margin:0; font-size:.92rem; color:#444}
     .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
-    @media (min-width:640px){ h1.entry-title{font-size:1.6rem} }
   </style>
 </head>
 <body>
@@ -103,8 +102,8 @@
         記事を書く、セミナーに参加する、仲間を紹介する──<br><br>
         これら一つひとつがスコアとして蓄積され、やがて報酬や実績に直結していきます。<br><br>
         さらにDID（分散型ID）によって、このスコアは退会しても消えず、未来の活動や外部評価にまで使える“デジタル履歴”として残ります。<br><br>
-        🎥 動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、なぜ「月250万円」という継続収入が可能になるのかを解説。<br><br>
-        👉 今、知っているかどうかで5年後の景色がまったく変わります。
+        動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、なぜ「月250万円」という継続収入が可能になるのかを解説。<br><br>
+        今、知っているかどうかで5年後の景色がまったく変わります。
       </p>
 
       <!-- ヘッダー画像 -->
@@ -137,58 +136,5 @@
       </a>
     </div>
   </div>
-
-  <script>
-    (function(){
-      const GAS_URL = "https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec";
-
-      const params = new URLSearchParams(location.search);
-      const ref = params.get('ref') || '不明';
-
-      const refView = document.getElementById('refView');
-      if (params.get('ref')) {
-        refView.style.display = 'inline-flex';
-        refView.textContent = `紹介者：${ref}`;
-      }
-
-      const LINE_ID  = "@479rnxap";
-      const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref)}`;
-      const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
-
-      const cta = document.getElementById('ctaBtn');
-      cta.href = httpsURL;
-
-      function sendRefOnClick(){
-        const payload = new URLSearchParams({
-          ref,
-          event: 'cta_click',
-          ts: String(Date.now()),
-          ua: navigator.userAgent
-        }).toString();
-
-        let sent = false;
-        if (navigator.sendBeacon) {
-          sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
-        }
-        if (!sent) {
-          try {
-            fetch(GAS_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: payload,
-              keepalive: true
-            });
-          } catch (e) {}
-        }
-      }
-
-      cta.addEventListener('click', (e)=>{
-        e.preventDefault();
-        sendRefOnClick();
-        location.href = deepURL;
-        setTimeout(()=>{ location.href = httpsURL; }, 900);
-      });
-    })();
-  </script>
 </body>
 </html>
