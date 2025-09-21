@@ -26,19 +26,56 @@
       background:#fff;
     }
     .wrap{max-width:640px; margin:auto; padding:20px 16px 120px;}
-    .brand{ display:flex; align-items:center; gap:12px; padding:12px 10px; margin:4px auto 10px; border-radius:12px;}
-    .brand img.logo{width:50px; height:50px; object-fit:contain;}
-    .brand .meta{line-height:1.25}
-    .badge{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);}
+
+    /* ブランドヘッダーを横幅いっぱい帯表示 */
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:18px 20px;
+      margin:0 0 20px 0;
+      border-radius:0;
+      background:#f5f9ff;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      width:100%;
+    }
+    .brand img.logo {
+      width:72px;
+      height:72px;
+      object-fit:contain;
+    }
+    .brand .meta {
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 14px;
+      border-radius:999px;
+      font-size:1.05rem;
+      font-weight:700;
+      color:#fff;
+      background:var(--brand);
+      margin-bottom:6px;
+    }
+    .brand .meta div:last-child {
+      font-size:1.3rem;
+      font-weight:700;
+      color:#222;
+    }
+
     .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
 
     /* H1タイトル調整 */
     h1.entry-title {
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 800;
       text-align: left;
       margin: 0 0 16px;
-      line-height: 1.1;
+      line-height: 1.2;
     }
 
     /* H2調整 */
@@ -49,15 +86,8 @@
       text-align: left;
     }
 
-    .site-description {
-      font-size: 1.1rem;
-      color: #444;
-      margin-bottom: 15px;
-      text-align: left;
-    }
-
     .lead{
-      font-size: 1.2rem;   /* 本文をさらに大きく */
+      font-size: 1.2rem;
       color:var(--ink);
       line-height:1.9;
     }
@@ -71,7 +101,7 @@
       gap:8px;
       padding:10px 0;
       border-top:1px dashed #eee;
-      font-size:1.15rem;   /* リストも大きめに */
+      font-size:1.15rem;
     }
     ul.benefits li:first-child{border-top:0}
     .icon{font-size:1.3rem}
@@ -94,8 +124,9 @@
     .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
     .cta p{margin:0; font-size:1.05rem; color:#444}
     .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
+
     @media (min-width:640px){
-      h1.entry-title{font-size:2.3rem}
+      h1.entry-title{font-size:2.4rem}
       h2{font-size:1.8rem}
       .lead{font-size:1.3rem}
       ul.benefits li{font-size:1.25rem}
@@ -103,19 +134,19 @@
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <!-- 公式ヘッダー -->
-    <div class="brand">
-      <img class="logo" src="/images/awabotalogo.jpg" alt="awabota公式ロゴ">
-      <div class="meta">
-        <div class="badge">awabota 公式</div>
-        <div style="font-size:.9rem; color:#506070; margin-top:4px;">LINE登録特典のご案内ページ</div>
-      </div>
+  <!-- 公式ヘッダー -->
+  <div class="brand">
+    <img class="logo" src="/images/awabotalogo.jpg" alt="awabota公式ロゴ">
+    <div class="meta">
+      <div class="badge">awabota 公式</div>
+      <div>LINE登録特典のご案内ページ</div>
     </div>
+  </div>
 
+  <main class="wrap">
     <!-- ヒーロー -->
     <section class="hero">
-      <h1 class="entry-title">🔴 なぜ「月250万円」<br>　  が現実になるのか？</h1><br>
+      <h1 class="entry-title">🔴 なぜ「月250万円」<br>が現実になるのか？</h1>
 
       <p class="lead">
         awabotaが10月1日からスタートした<br>
@@ -123,12 +154,9 @@
         資産化する全く新しい仕組みです。<br><br>
         記事を書く、セミナーに参加する、<br>
         仲間を紹介する──<br><br>
-        これら一つひとつがスコアとして蓄積され、やがて報酬や実績に直結して<br>
-        いきます。<br><br>
-        さらにDID（分散型ID）によって、このスコアは退会しても消えず、未来の活動や外部評価にまで使える<br>
-        “デジタル履歴”として残ります。<br><br>
-        動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、なぜ「月250万円」という<br>
-        継続収入が可能になるのかを解説。<br><br>
+        これら一つひとつがスコアとして蓄積され、やがて報酬や実績に直結していきます。<br><br>
+        さらにDID（分散型ID）によって、このスコアは退会しても消えず、未来の活動や外部評価にまで使える“デジタル履歴”として残ります。<br><br>
+        動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、なぜ「月250万円」という継続収入が可能になるのかを解説。<br><br>
         今、知っているかどうかで5年後の景色がまったく変わります。
       </p>
 
@@ -140,8 +168,7 @@
 
     <!-- こんな人におすすめ -->
     <section class="section">
-      <h2>🔴 こんな方におすすめ</h2><br>
-      
+      <h2>🔴 こんな方におすすめ</h2>
       <ul class="benefits">
         <li><span class="icon">✅</span> 副業や働き方に迷っている</li>
         <li><span class="icon">✅</span> 今の収入に不安がある</li>
