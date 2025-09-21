@@ -34,39 +34,44 @@
 
     /* H1タイトル調整 */
     h1.entry-title {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 800;
-      text-align: center;
+      text-align: left;
       margin: 0 0 16px;
-      line-height: 1.1;   /* 行間を詰める */
+      line-height: 1.1;
     }
 
     /* H2調整 */
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 700;
       margin: 0 0 14px;
-      text-align: center;
+      text-align: left;
     }
 
     .site-description {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: #444;
       margin-bottom: 15px;
-      text-align: center;
+      text-align: left;
     }
 
-    .lead{font-size:1rem; color:var(--ink); line-height:1.8}
+    .lead{
+      font-size: 1.1rem;   /* 本文を少し大きく */
+      color:var(--ink);
+      line-height:1.85;
+    }
+
     .shot{ width:100%; display:block; border:1px solid #eee; border-radius:12px; margin:14px 0; }
     .section{ border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;}
-    .section h2{font-size:1.4rem; margin:0 0 14px; text-align:center;}
+    .section h2{font-size:1.5rem; margin:0 0 14px; text-align:left;}
     ul.benefits{list-style:none; padding:0; margin:0}
-    ul.benefits li{display:flex; gap:8px; padding:8px 0; border-top:1px dashed #eee}
+    ul.benefits li{display:flex; gap:8px; padding:8px 0; border-top:1px dashed #eee; font-size:1.05rem;}
     ul.benefits li:first-child{border-top:0}
-    .icon{font-size:1.1rem}
-    .refchip{ display:inline-flex; align-items:center; gap:6px; background:#f4f7fb; color:#456; font-size:.86rem; padding:6px 10px; border-radius:999px; border:1px solid #e6edf6; margin-top:8px;}
+    .icon{font-size:1.2rem}
+    .refchip{ display:inline-flex; align-items:center; gap:6px; background:#f4f7fb; color:#456; font-size:.95rem; padding:6px 10px; border-radius:999px; border:1px solid #e6edf6; margin-top:8px;}
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
-    .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
+    .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:1rem;}
 
     /* ヘッダー画像レスポンシブ */
     .header-hero img {
@@ -81,11 +86,12 @@
     /* 固定CTA */
     .cta{ position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px;}
     .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
-    .cta p{margin:0; font-size:.92rem; color:#444}
+    .cta p{margin:0; font-size:1rem; color:#444}
     .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
     @media (min-width:640px){
-      h1.entry-title{font-size:2.2rem}
-      h2{font-size:1.6rem}
+      h1.entry-title{font-size:2.3rem}
+      h2{font-size:1.7rem}
+      .lead{font-size:1.2rem}
     }
   </style>
 </head>
@@ -102,7 +108,7 @@
 
     <!-- ヒーロー -->
     <section class="hero">
-      <h1 class="entry-title">🔴 なぜ「月250万円」<br>　が現実になるのか？</h1>
+      <h1 class="entry-title">🔴 なぜ「月250万円」<br>が現実になるのか？</h1>
 
       <p class="lead">
         awabotaが10月1日からスタートした<br>
