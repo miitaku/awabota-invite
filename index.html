@@ -20,9 +20,9 @@
     }
     *{box-sizing:border-box}
     body{
-      margin:0; 
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif; 
-      color:var(--ink); 
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "ヒラギノ角ゴ ProN", "Noto Sans JP", sans-serif;
+      color:var(--ink);
       background:#fff;
     }
     .wrap{max-width:640px; margin:auto; padding:20px 16px 120px;}
@@ -32,18 +32,18 @@
     .badge{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);}
     .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
 
-    /* タイトル調整 */
+    /* H1タイトル調整 */
     h1.entry-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      line-height: 1.5;
       text-align: center;
       margin: 0 0 12px;
-      white-space: normal;
-      word-break: break-word;
-      overflow-wrap: break-word;
-      text-wrap: balance;
+      line-height: 1.4;
+      white-space: nowrap;       /* 折り返し禁止 */
+      overflow: hidden;          /* はみ出し非表示 */
+      text-overflow: ellipsis;   /* 長すぎたら … */
     }
+
     .site-description {
       font-size: 1rem;
       color: #444;
@@ -94,35 +94,24 @@
 
     <!-- ヒーロー -->
     <section class="hero">
+      <h1 class="entry-title">🔴 なぜ「月250万円」が現実になるのか？</h1>
+      <p class="site-description">登録後すぐにLINEでお届けします</p>
 
-      <section class="section">
-      <h1>🔴 なぜ「月250万円」が現実になるのか？</h1>
       <p class="lead">
-        awabotaが10月1日からスタートした<br>
-        「信用スコア」は、行動そのものを資産化する全く新しい仕組みです。<br><br>
-        記事を書く、セミナーに参加する、<br>
-        仲間を紹介する──<br><br>
+        awabotaが10月1日からスタートした「信用スコア」は、<br>
+        行動そのものを資産化する全く新しい仕組みです。<br><br>
+        記事を書く、セミナーに参加する、仲間を紹介する──<br><br>
         これら一つひとつがスコアとして蓄積され、やがて報酬や実績に直結していきます。<br><br>
-
-        さらにDID（分散型ID）によって、<br>
-        このスコアは退会しても消えず、<br>
-        未来の活動や外部評価にまで使える<br>
-        “デジタル履歴”として残ります。<br><br>
-
-        動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、<br>
-        なぜ「月250万円」という継続収入が可能になるのかを解説。<br>
-        スクールや副業のように一時的で終わる仕組みではなく、<br>
-        積み重ねが確実に未来を変える仕組みになっていることが分かります。<br><br>
-
-        今、知っているかどうかで<br>
-        5年後の景色がまったく変わります。<br>
-        この一歩が、安心できる未来への入り口です。
+        さらにDID（分散型ID）によって、このスコアは退会しても消えず、未来の活動や外部評価にまで使える“デジタル履歴”として残ります。<br><br>
+        🎥 動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、なぜ「月250万円」という継続収入が可能になるのかを解説。<br><br>
+        👉 今、知っているかどうかで5年後の景色がまったく変わります。
       </p>
 
       <!-- ヘッダー画像 -->
       <div class="header-hero">
         <img src="/images/S__14278663.jpg" alt="awabotaヘッダー画像">
       </div>
+    </section>
 
     <!-- こんな人におすすめ -->
     <section class="section">
