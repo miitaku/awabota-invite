@@ -39,6 +39,14 @@
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
     .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
 
+    /* ヘッダー画像レスポンシブ */
+    .header-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
     /* 固定CTA */
     .cta{ position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px;}
     .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
@@ -59,40 +67,40 @@
     </div>
 
     <!-- ヒーロー -->
-   <section class="hero">
+    <section class="hero">
 
-  <h1 class="entry-title">
-    🌐 なぜ「月250万円」が現実になるのか？
-  </h1>
-  <p class="site-description">登録後すぐにLINEでお届けします</p>
+      <h1 class="entry-title">
+        🌐 なぜ「月250万円」が現実になるのか？
+      </h1>
+      <p class="site-description">登録後すぐにLINEでお届けします</p>
 
-  <p class="lead">
-    awabotaが10月1日からスタートした「信用スコア」は、<br>
-    行動そのものを資産化する全く新しい仕組みです。<br>
-    記事を書く、セミナーに参加する、仲間を紹介する──<br>
-    これら一つひとつがスコアとして蓄積され、<br>
-    やがて報酬や実績に直結していきます。<br><br>
+      <p class="lead">
+        awabotaが10月1日からスタートした「信用スコア」は、<br>
+        行動そのものを資産化する全く新しい仕組みです。<br>
+        記事を書く、セミナーに参加する、仲間を紹介する──<br>
+        これら一つひとつがスコアとして蓄積され、<br>
+        やがて報酬や実績に直結していきます。<br><br>
 
-    さらにDID（分散型ID）によって、<br>
-    このスコアは退会しても消えず、<br>
-    未来の活動や外部評価にまで使える<br>
-    “デジタル履歴”として残ります。<br><br>
+        さらにDID（分散型ID）によって、<br>
+        このスコアは退会しても消えず、<br>
+        未来の活動や外部評価にまで使える<br>
+        “デジタル履歴”として残ります。<br><br>
 
-    🎥 動画では、このスコア設計と<br>
-    MD（未来型デジタル商品）を組み合わせることで、<br>
-    なぜ「月250万円」という継続収入が可能になるのかを解説。<br>
-    スクールや副業のように一時的で終わる仕組みではなく、<br>
-    積み重ねが確実に未来を変える仕組みになっていることが分かります。<br><br>
+        🎥 動画では、このスコア設計と<br>
+        MD（未来型デジタル商品）を組み合わせることで、<br>
+        なぜ「月250万円」という継続収入が可能になるのかを解説。<br>
+        スクールや副業のように一時的で終わる仕組みではなく、<br>
+        積み重ねが確実に未来を変える仕組みになっていることが分かります。<br><br>
 
-    👉 今、知っているかどうかで<br>
-    5年後の景色がまったく変わります。<br>
-    この一歩が、安心できる未来への入り口です。
-  </p>
-      </picture>
-     <!-- ヘッダー画像 -->
-  <div class="header-hero">
-    <img src="/images/S__14278663.jpg" alt="awabotaヘッダー画像">
-  </div>
+        👉 今、知っているかどうかで<br>
+        5年後の景色がまったく変わります。<br>
+        この一歩が、安心できる未来への入り口です。
+      </p>
+
+      <!-- ヘッダー画像 -->
+      <div class="header-hero">
+        <img src="/images/S__14278663.jpg" alt="awabotaヘッダー画像">
+      </div>
 
       <p class="lead" style="margin-top:6px">
         あなたの「行動」が未来の「資産」に変わる秘密を公開！<br>
@@ -187,11 +195,6 @@
         location.href = deepURL;
         setTimeout(()=>{ location.href = httpsURL; }, 900);
       });
-
-      const mainImg = document.getElementById('mainImg');
-      mainImg.onerror = function () {
-        mainImg.src = '/images/1.jpg?v=6';
-      };
     })();
   </script>
 </body>
