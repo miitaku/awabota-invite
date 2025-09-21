@@ -31,29 +31,37 @@
     .brand{ 
       display:flex; 
       align-items:center; 
-      gap:12px; 
-      padding:12px 10px; 
-      margin:4px auto 10px; 
+      gap:14px; 
+      padding:14px 12px; 
+      margin:4px auto 18px; 
       border-radius:12px; 
       background:#f7f9fc;
     }
-    .brand img.logo{width:50px; height:50px; object-fit:contain;}
-    .brand .meta{line-height:1.3; white-space:nowrap;}
+    .brand img.logo{width:54px; height:54px; object-fit:contain;}
+
+    .brand .meta{display:flex; flex-direction:column; gap:8px; width:100%;}
     .badge{ 
       display:inline-flex; 
       align-items:center; 
-      gap:6px; 
-      padding:3px 8px; 
+      justify-content:center;
+      padding:6px 14px; 
       border-radius:999px; 
-      font-size:.85rem; 
+      font-size:1rem; 
       font-weight:700; 
       color:#fff; 
       background:var(--brand);
+      width:fit-content;
     }
     .brand .title-text{
-      font-size:0.95rem;
-      font-weight:600;
+      font-size:1.4rem;   /* 強調 */
+      font-weight:700;
       color:#222;
+      text-align:left;
+      width:100%;
+      line-height:1.3;
+    }
+    @media (min-width:640px){
+      .brand .title-text{font-size:1.8rem;}
     }
 
     /* ヒーロー */
@@ -68,14 +76,14 @@
 
     /* H1タイトル調整 */
     h1.entry-title {
-      font-size: 1.6rem;
+      font-size: 1.4rem;   /* 少し抑えた */
       font-weight: 800;
       text-align: left;
       margin: 0 0 14px;
-      line-height: 1.2;
+      line-height: 1.4;
     }
     @media (min-width:640px){
-      h1.entry-title{font-size:2rem}
+      h1.entry-title{font-size:1.8rem;}
     }
 
     /* H2調整 */
@@ -87,9 +95,9 @@
     }
 
     .lead{
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color:var(--ink);
-      line-height:1.85;
+      line-height:1.8;
     }
 
     .shot{ width:100%; display:block; border:1px solid #eee; border-radius:12px; margin:14px 0; }
@@ -139,15 +147,11 @@
       <h1 class="entry-title">🔴 なぜ「月250万円」が現実になるのか？</h1>
 
       <p class="lead">
-        awabotaが10月1日からスタートした<br>
-        「信用スコア」は、行動そのものを資産化する<br>
-        全く新しい仕組みです。<br><br>
+        awabotaが10月1日からスタートした「信用スコア」は、行動そのものを資産化する全く新しい仕組みです。<br><br>
         記事を書く、セミナーに参加する、仲間を紹介する──<br><br>
-        これら一つひとつがスコアとして蓄積され、<br>
-        やがて報酬や実績に直結していきます。<br><br>
+        これら一つひとつがスコアとして蓄積され、やがて報酬や実績に直結していきます。<br><br>
         さらにDID（分散型ID）によって、このスコアは退会しても消えず、未来の活動や外部評価にまで使える“デジタル履歴”として残ります。<br><br>
-        動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、なぜ<br>
-        「月250万円」という継続収入が可能になるのかを解説。<br><br>
+        動画では、このスコア設計とMD（未来型デジタル商品）を組み合わせることで、なぜ「月250万円」という継続収入が可能になるのかを解説。<br><br>
         今、知っているかどうかで5年後の景色がまったく変わります。
       </p>
 
