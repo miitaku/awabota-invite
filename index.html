@@ -31,13 +31,12 @@
     .brand {
       display:flex;
       align-items:center;
-      gap:16px;
-      padding:18px 20px;
-      margin:0 0 20px 0;
-      border-radius:0;
+      gap:18px;
+      padding:20px;
+      margin:0 0 24px 0;
       background:#f5f9ff;
-      box-shadow:0 2px 8px rgba(0,0,0,0.05);
       width:100%;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
     }
     .brand img.logo {
       width:72px;
@@ -50,58 +49,65 @@
       justify-content:center;
     }
     .badge {
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:6px 14px;
+      display:inline-block;
+      padding:4px 12px;
       border-radius:999px;
-      font-size:1.05rem;
+      font-size:1rem;
       font-weight:700;
       color:#fff;
       background:var(--brand);
+      line-height:1.3;
       margin-bottom:6px;
+      width:fit-content;
     }
     .brand .meta div:last-child {
-      font-size:1.3rem;
-      font-weight:700;
+      font-size:1.4rem;
+      font-weight:800;
       color:#222;
     }
 
-    .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
+    .hero{ 
+      background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); 
+      border:1px solid #eef4fa; 
+      border-radius:var(--radius); 
+      box-shadow:var(--shadow); 
+      padding:22px 18px; 
+      margin:10px 0 18px;
+    }
 
     /* H1タイトル調整 */
     h1.entry-title {
-      font-size: 2rem;
+      font-size: 2.1rem;
       font-weight: 800;
       text-align: left;
-      margin: 0 0 16px;
+      margin: 0 0 18px;
       line-height: 1.2;
     }
 
     /* H2調整 */
     h2 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 700;
-      margin: 0 0 14px;
+      margin: 0 0 16px;
       text-align: left;
     }
 
     .lead{
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color:var(--ink);
       line-height:1.9;
     }
 
     .shot{ width:100%; display:block; border:1px solid #eee; border-radius:12px; margin:14px 0; }
     .section{ border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;}
-    .section h2{font-size:1.6rem; margin:0 0 14px; text-align:left;}
+    .section h2{font-size:1.7rem; margin:0 0 16px; text-align:left;}
     ul.benefits{list-style:none; padding:0; margin:0}
     ul.benefits li{
       display:flex;
       gap:8px;
       padding:10px 0;
       border-top:1px dashed #eee;
-      font-size:1.15rem;
+      font-size:1.2rem;
     }
     ul.benefits li:first-child{border-top:0}
     .icon{font-size:1.3rem}
@@ -126,10 +132,10 @@
     .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
 
     @media (min-width:640px){
-      h1.entry-title{font-size:2.4rem}
-      h2{font-size:1.8rem}
-      .lead{font-size:1.3rem}
-      ul.benefits li{font-size:1.25rem}
+      h1.entry-title{font-size:2.5rem}
+      h2{font-size:1.9rem}
+      .lead{font-size:1.35rem}
+      ul.benefits li{font-size:1.3rem}
     }
   </style>
 </head>
