@@ -26,7 +26,27 @@
     .brand .meta{line-height:1.25}
     .badge{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; font-size:.82rem; font-weight:700; color:#fff; background:var(--brand);}
     .hero{ background:linear-gradient(180deg, #f6fbff 0%, #ffffff 65%); border:1px solid #eef4fa; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 18px; margin:10px 0 18px;}
-    h1{font-size:1.28rem; margin:0 0 8px; line-height:1.35; text-wrap:balance; word-break:keep-all; -webkit-hyphens:none; hyphens:none;}
+    
+    /* タイトル調整 */
+    h1.entry-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      margin: 0 0 12px;
+      white-space: normal;         /* 自然に折返し */
+      word-break: break-word;      /* 長い単語を折返し */
+      overflow-wrap: break-word;   /* はみ出し防止 */
+      text-wrap: balance;          /* スマホでバランス良く改行 */
+    }
+
+    .site-description {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
     .lead{font-size:1rem; color:var(--ink); line-height:1.8}
     .shot{ width:100%; display:block; border:1px solid #eee; border-radius:12px; margin:14px 0; }
     .section{ border:1px solid #f0f0f0; border-radius:var(--radius); padding:16px; margin:16px 0;}
@@ -39,20 +59,12 @@
     .trust{ display:grid; gap:8px; grid-template-columns:repeat(2,1fr);}
     .trust .card{ border:1px solid #eef2f7; border-radius:12px; padding:12px; background:#fafcff; font-size:.9rem;}
 
-    /* ヘッダー画像レスポンシブ */
-    .header-hero img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 10px;
-    }
-
     /* 固定CTA */
     .cta{ position:fixed; inset:auto 0 0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px;}
     .cta .row{max-width:640px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between;}
     .cta p{margin:0; font-size:.92rem; color:#444}
     .cta img.cta-img{ height:60px; border-radius:12px; display:block; }
-    @media (min-width:640px){ h1{font-size:1.38rem} }
+    @media (min-width:640px){ h1.entry-title{font-size:1.6rem} }
   </style>
 </head>
 <body>
@@ -68,7 +80,6 @@
 
     <!-- ヒーロー -->
     <section class="hero">
-
       <h1 class="entry-title">
         🌐 なぜ「月250万円」が現実になるのか？
       </h1>
@@ -96,42 +107,6 @@
         5年後の景色がまったく変わります。<br>
         この一歩が、安心できる未来への入り口です。
       </p>
-
-      <!-- ヘッダー画像 -->
-      <div class="header-hero">
-        <img src="/images/S__14278663.jpg" alt="awabotaヘッダー画像">
-      </div>
-
-      <p class="lead" style="margin-top:6px">
-        あなたの「行動」が未来の「資産」に変わる秘密を公開！<br>
-        Web5の最先端技術とAIが融合した awabota の世界で、<br>
-        「あなたの日常の『行動』が いかにして『世界で通用する信用』と『未来の資産』に変わるのか」<br>
-        その全貌をお話しします！
-      </p>
-    </section>
-
-    <!-- LINE中身サンプル -->
-    <section class="section">
-      <h2>🔴 実際の配信イメージ（登録後すぐ届きます）</h2>
-      <img class="shot" src="/images/Lite.jpg?v=6" alt="LINEトーク画面のサンプル">
-      <div class="trust">
-        <div class="card">🛡️ 迷惑配信なし／いつでもブロックOK</div>
-        <div class="card">🎫 メンバー限定の先行案内・優待あり</div>
-      </div>
-    </section>
-
-    <!-- こんな人におすすめ -->
-    <section class="section">
-      <h2>🔴 こんな方におすすめ</h2>
-      <ul class="benefits">
-        <li><span class="icon">✅</span> 副業や働き方に迷っている</li>
-        <li><span class="icon">✅</span> 今の収入に不安がある</li>
-        <li><span class="icon">✅</span> 自由なライフスタイルを目指したい</li>
-        <li><span class="icon">✅</span> FXや暗号通貨の案件が上手くいかない</li>
-        <li><span class="icon">✅</span> 介護や育児、自身の老後が不安</li>
-        <li><span class="icon">✅</span> 会社経営に不安を感じている</li>
-      </ul>
-      <div id="refView" class="refchip" style="display:none"></div>
     </section>
   </main>
 
