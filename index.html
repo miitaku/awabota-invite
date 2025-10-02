@@ -29,16 +29,20 @@
 
     /* ヒーロー */
     .vc-hero{ padding:36px 20px; background:#0b0b0f; color:#fff; text-align:center; border-radius:14px; margin-bottom:20px; }
-    .vc-hero h1{ font-size:1.8rem; margin:0 0 12px; }
-    .vc-hero p{ opacity:.9; font-size:1rem; margin:0 0 20px; }
+    .vc-hero h1{ font-size:1.8rem; margin:0 0 12px; line-height:1.4; }
+    .vc-hero p{ opacity:.9; font-size:1rem; margin:0 0 20px; line-height:1.7; }
     .vc-hero a{ display:inline-block; background:#28c76f; color:#0b0b0f; font-weight:700; padding:14px 24px; border-radius:8px; text-decoration:none; font-size:1.1rem; }
 
     /* セクション */
     .section{ padding:24px 20px; margin:20px 0; background:#fff; border-radius:12px; border:1px solid #eef4fa; box-shadow:var(--shadow); }
-    .section h2{ font-size:1.4rem; font-weight:700; margin:0 0 12px; }
+    .section h2{ font-size:1.4rem; font-weight:700; margin:0 0 12px; line-height:1.5; }
     .section p{ margin:0 0 16px; font-size:1.05rem; line-height:1.7; }
-    .section ul{ margin:0 0 16px 18px; padding:0; font-size:1.05rem; line-height:1.6; }
+    .section ul{ margin:0 0 16px 18px; padding:0; font-size:1.05rem; line-height:1.7; }
     .section li{ margin-bottom:8px; }
+
+    .highlight{
+      font-weight:700; font-size:1.05rem; line-height:1.7; margin-top:10px; text-align:left;
+    }
 
     /* 受講者の声 */
     .voices{ padding:40px 20px; background:#f7f7f7; max-width:900px; margin:40px auto; border-radius:8px; }
@@ -62,7 +66,7 @@
     /* CTA固定 */
     .cta{ position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px; }
     .cta .row{ max-width:720px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between; }
-    .cta p{ margin:0; font-size:1rem; color:#444; line-height:1.4; }
+    .cta p{ margin:0; font-size:1rem; color:#444; }
     .cta img.cta-img{ height:56px; border-radius:12px; display:block; }
   </style>
 </head>
@@ -80,7 +84,7 @@
     <!-- ヒーロー -->
     <section class="vc-hero">
       <h1>🚀 VC（Verifiable Credential）無料Zoomセミナー</h1>
-      <p>信用は“日常で積み上げ”<br>VCは“節目で証明”<br>awabota × DID × VC を先行体験</p>
+      <p>信用は“日常で積み上げ”、VCは“節目で証明”。awabota × DID × VC を先行体験</p>
       <a id="applyBtnTop" href="#">無料セミナーに参加する</a>
     </section>
 
@@ -94,7 +98,7 @@
         <li>スコアとVCに連動した収益装置（MD）の実態</li>
         <li>VCを持たなかった場合に起こる“機会損失”とは？</li>
       </ul>
-      <p><b>👉 「参加するだけ」で信用スコアが加点され、一定到達でVCが発行されます。</b></p>
+      <p class="highlight">👉 「参加するだけ」で信用スコアが加点され、一定到達でVCが発行されます。</p>
     </section>
 
     <!-- こんな方におすすめ -->
@@ -150,7 +154,7 @@
   <!-- 固定CTA -->
   <div class="cta">
     <div class="row">
-      <p>公式LINEを登録して<br>無料Zoomに参加</p>
+      <p>公式LINEを登録して 無料Zoomに参加</p>
       <a id="ctaBtn" href="#">
         <img class="cta-img" src="/images/awabotaline.jpg" alt="友だち追加">
       </a>
@@ -174,7 +178,7 @@
       const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref || '')}`;
       const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
 
-      // 全てのCTAボタンを対象に
+      // 全CTAを対象に
       const buttons = [document.getElementById('ctaBtn'), document.getElementById('applyBtn'), document.getElementById('applyBtnTop')];
       buttons.forEach(btn=>{
         if(!btn) return;
