@@ -7,64 +7,49 @@
 
   <style>
     :root{
-      --brand:#105a8e; 
-      --ink:#222;
-      --muted:#6b7280;
-      --radius:14px; 
-      --shadow:0 8px 30px rgba(0,0,0,.08);
+      --brand:#105a8e; --ink:#222; --muted:#6b7280;
+      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
       --card:#f7f9fc;
     }
     *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,"ヒラギノ角ゴ ProN","Noto Sans JP",sans-serif;
-      color:var(--ink);
-      background:#fff;
-    }
+    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,"ヒラギノ角ゴ ProN","Noto Sans JP",sans-serif; color:var(--ink); background:#fff; }
     .wrap{ max-width:720px; margin:auto; padding:20px 16px 120px; }
 
-    /* ========= ブランドヘッダー ========= */
+    /* ブランドヘッダー */
     .brand{
-      display:flex; align-items:center; justify-content:flex-start;
-      gap:14px; padding:14px 12px; margin:4px auto 20px;
+      display:flex; align-items:center; gap:14px;
+      padding:14px 12px; margin:4px auto 20px;
       border-radius:12px; background:var(--card);
       width:95%; max-width:680px; box-shadow:var(--shadow);
     }
     .brand img.logo{ width:70px; height:70px; object-fit:contain; }
     .brand .meta{ display:flex; flex-direction:column; align-items:flex-start; gap:6px; margin-left:12px; }
-    .title-text{ font-size:1.4rem; font-weight:700; color:#222; line-height:1.35; }
+    .title-text{ font-size:1.4rem; font-weight:700; line-height:1.35; }
     @media(min-width:640px){ .title-text{ font-size:1.6rem; } }
 
-    /* ========= ヒーロー ========= */
-    .vc-hero{
-      padding:36px 20px; background:#0b0b0f; color:#fff; text-align:center;
-      border-radius:14px; margin-bottom:20px;
-    }
-    .vc-hero h1{ font-size:1.8rem; line-height:1.4; margin:0 0 12px; }
+    /* ヒーロー */
+    .vc-hero{ padding:36px 20px; background:#0b0b0f; color:#fff; text-align:center; border-radius:14px; margin-bottom:20px; }
+    .vc-hero h1{ font-size:1.8rem; margin:0 0 12px; }
     .vc-hero p{ opacity:.9; font-size:1rem; margin:0 0 20px; }
-    .vc-hero a{
-      display:inline-block; background:#28c76f; color:#0b0b0f;
-      font-weight:700; padding:14px 24px; border-radius:8px;
-      text-decoration:none; font-size:1.1rem;
-    }
+    .vc-hero a{ display:inline-block; background:#28c76f; color:#0b0b0f; font-weight:700; padding:14px 24px; border-radius:8px; text-decoration:none; font-size:1.1rem; }
 
-    /* ========= コンテンツセクション ========= */
+    /* セクション */
     .section{ padding:24px 20px; margin:20px 0; background:#fff; border-radius:12px; border:1px solid #eef4fa; box-shadow:var(--shadow); }
     .section h2{ font-size:1.4rem; font-weight:700; margin:0 0 12px; }
     .section p{ margin:0 0 16px; font-size:1.05rem; line-height:1.7; }
     .section ul{ margin:0 0 16px 18px; padding:0; font-size:1.05rem; line-height:1.6; }
     .section li{ margin-bottom:8px; }
 
-    /* CTA */
-    .cta{
-      position:fixed; left:0; right:0; bottom:0; background:#fff;
-      border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06);
-      padding:12px 16px;
-    }
-    .cta .row{
-      max-width:720px; margin:auto; display:flex; gap:10px;
-      align-items:center; justify-content:space-between;
-    }
+    /* 受講者の声 */
+    .voices{ padding:40px 20px; background:#f7f7f7; max-width:900px; margin:40px auto; border-radius:8px; }
+    .voices h2{ font-size:22px; margin:0 0 20px; text-align:center; }
+    .voices ul{ list-style:none; padding:0; margin:0; }
+    .voices li{ margin:0 0 16px; padding:16px; background:#fff; border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.05); }
+    .voices p{ margin:0; font-size:16px; line-height:1.6; }
+
+    /* CTA固定 */
+    .cta{ position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px; }
+    .cta .row{ max-width:720px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between; }
     .cta p{ margin:0; font-size:1rem; color:#444; }
     .cta img.cta-img{ height:56px; border-radius:12px; display:block; }
   </style>
@@ -87,7 +72,7 @@
       <a href="#apply">無料セミナーに参加する</a>
     </section>
 
-    <!-- 内容セクション -->
+    <!-- 学べること -->
     <section class="section">
       <h2>✅ このセミナーで得られること</h2>
       <ul>
@@ -108,6 +93,17 @@
         <li>収入の柱をもう一つ増やしたい</li>
         <li>AI・Web3など新しい働き方を学びたい</li>
         <li>コミュニティで繋がり、協業チャンスを広げたい</li>
+      </ul>
+    </section>
+
+    <!-- 受講者の声 -->
+    <section class="voices">
+      <h2>受講者の声</h2>
+      <ul>
+        <li><p>「国はなぜこんな話をしないのか？知らないと詰む。」</p></li>
+        <li><p>「数年後は月に10億円とかつくれる感じがした。」</p></li>
+        <li><p>「今、案件もサイドビジネスも全部ダメ。これしかないかも。」</p></li>
+        <li><p>「自分の権利が全く無くなる人が出てくる。」</p></li>
       </ul>
     </section>
 
