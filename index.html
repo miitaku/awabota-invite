@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>awabota公式｜無料zoomご案内</title>
+  <title>awabota公式｜無料Zoomご案内</title>
 
-  <!-- 基本色など -->
   <style>
     :root{
       --brand:#105a8e; 
@@ -22,96 +21,48 @@
       color:var(--ink);
       background:#fff;
     }
-    .wrap{ max-width:640px; margin:auto; padding:20px 16px 120px; }
+    .wrap{ max-width:720px; margin:auto; padding:20px 16px 120px; }
 
-    /* =========  ブランドヘッダー  ========= */
+    /* ========= ブランドヘッダー ========= */
     .brand{
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;           /* 中身は左詰め */
-      gap:14px;
-      padding:14px 12px;
-      margin:4px auto 16px;                 /* コンテナ自体は中央へ */
-      border-radius:12px;
-      background:var(--card);
-      width:90%;
-      max-width:600px;
-      box-shadow:var(--shadow);
+      display:flex; align-items:center; justify-content:flex-start;
+      gap:14px; padding:14px 12px; margin:4px auto 20px;
+      border-radius:12px; background:var(--card);
+      width:95%; max-width:680px; box-shadow:var(--shadow);
     }
-    .brand img.logo{
-      width:70px; height:70px; object-fit:contain;
+    .brand img.logo{ width:70px; height:70px; object-fit:contain; }
+    .brand .meta{ display:flex; flex-direction:column; align-items:flex-start; gap:6px; margin-left:12px; }
+    .title-text{ font-size:1.4rem; font-weight:700; color:#222; line-height:1.35; }
+    @media(min-width:640px){ .title-text{ font-size:1.6rem; } }
+
+    /* ========= ヒーロー ========= */
+    .vc-hero{
+      padding:36px 20px; background:#0b0b0f; color:#fff; text-align:center;
+      border-radius:14px; margin-bottom:20px;
     }
-    .brand .meta{
-      display:flex; flex-direction:column; align-items:flex-start; gap:6px;
-      margin-left:12px;                     /* ロゴとの間隔を少し広めに */
-    }
-    .badge{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:6px 14px; border-radius:999px;
-      font-size:1rem; font-weight:700; color:#fff; background:var(--brand);
-    }
-    .title-text{
-      font-size:1.3rem; font-weight:700; color:#222;
-      text-align:left; white-space:normal; line-height:1.35;
-    }
-    @media (min-width:640px){
-      .title-text{ font-size:1.6rem; }
+    .vc-hero h1{ font-size:1.8rem; line-height:1.4; margin:0 0 12px; }
+    .vc-hero p{ opacity:.9; font-size:1rem; margin:0 0 20px; }
+    .vc-hero a{
+      display:inline-block; background:#28c76f; color:#0b0b0f;
+      font-weight:700; padding:14px 24px; border-radius:8px;
+      text-decoration:none; font-size:1.1rem;
     }
 
-    /* =========  ヒーロー  ========= */
-    .hero{
-      background:#fff;
-      border:1px solid #eef4fa;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:22px 18px;
-      margin:10px 0 18px;
-    }
-    h1.entry-title{
-      font-size:1.6rem; font-weight:800; line-height:1.3;
-      margin:0 0 12px; text-align:left;
-    }
-    @media (min-width:640px){
-      h1.entry-title{ font-size:2rem; }
-    }
-    .lead{ font-size:1.2rem; line-height:1.85; color:var(--ink); }
+    /* ========= コンテンツセクション ========= */
+    .section{ padding:24px 20px; margin:20px 0; background:#fff; border-radius:12px; border:1px solid #eef4fa; box-shadow:var(--shadow); }
+    .section h2{ font-size:1.4rem; font-weight:700; margin:0 0 12px; }
+    .section p{ margin:0 0 16px; font-size:1.05rem; line-height:1.7; }
+    .section ul{ margin:0 0 16px 18px; padding:0; font-size:1.05rem; line-height:1.6; }
+    .section li{ margin-bottom:8px; }
 
-    /* ヘッダー画像（横幅いっぱい） */
-    .header-hero img{
-      width:100%; height:auto; max-width:100%;
-      display:block; margin:16px 0; border-radius:12px;
-    }
-
-    /* =========  セクション  ========= */
-    .section{
-      border:1px solid #eef4fa; border-radius:var(--radius);
-      padding:16px; margin:16px 0; background:#fff; box-shadow:var(--shadow);
-    }
-    .section h2{
-      font-size:1.5rem; font-weight:700; margin:0 0 12px; text-align:left;
-    }
-    ul.benefits{ list-style:none; padding:0; margin:0; }
-    ul.benefits li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:10px 0; border-top:1px dashed #edf2f7; font-size:1.1rem;
-    }
-    ul.benefits li:first-child{ border-top:0; }
-    .icon{ font-size:1.2rem; line-height:1.2; }
-
-    .refchip{
-      display:inline-flex; align-items:center; gap:6px;
-      background:#f4f7fb; color:#456; font-size:.95rem;
-      padding:6px 10px; border-radius:999px; border:1px solid #e6edf6; margin-top:8px;
-    }
-
-    /* =========  固定CTA  ========= */
+    /* CTA */
     .cta{
       position:fixed; left:0; right:0; bottom:0; background:#fff;
       border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06);
       padding:12px 16px;
     }
     .cta .row{
-      max-width:640px; margin:auto; display:flex; gap:10px;
+      max-width:720px; margin:auto; display:flex; gap:10px;
       align-items:center; justify-content:space-between;
     }
     .cta p{ margin:0; font-size:1rem; color:#444; }
@@ -120,95 +71,84 @@
 </head>
 <body>
   <main class="wrap">
-    <!-- 公式ヘッダー -->
+
+    <!-- ブランドヘッダー -->
     <div class="brand">
       <img class="logo" src="/images/logo2.jpg" alt="awabota公式ロゴ">
       <div class="meta">
-        <div class="title-text">awabota公式zoom<br>ご案内</div>
+        <div class="title-text">awabota公式Zoom ご案内</div>
       </div>
     </div>
 
- <section class="vc-hero" style="padding:32px 20px;background:#0b0b0f;color:#fff;text-align:center;">
-  <h1 style="font-size:28px;line-height:1.3;margin:0 0 8px;">VC（Verifiable Credential）ZOOMセミナー</h1>
-  <p style="opacity:.9;margin:0 0 16px;">信用は“日常で積み上げ”、VCは“節目で証明”。awabota × DID × VC</p>
-  <a href="#apply" style="display:inline-block;background:#28c76f;color:#0b0b0f;font-weight:700;padding:12px 20px;border-radius:8px;text-decoration:none;">無料セミナーに参加する</a>
-</section>
+    <!-- ヒーロー -->
+    <section class="vc-hero">
+      <h1>🚀 VC（Verifiable Credential）無料Zoomセミナー</h1>
+      <p>信用は“日常で積み上げ”、VCは“節目で証明”。<br>awabota × DID × VC を先行体験</p>
+      <a href="#apply">無料セミナーに参加する</a>
+    </section>
 
-<section style="padding:28px 20px;background:#fff;max-width:900px;margin:auto;color:#111;">
-  <!-- 1. VCとは何か？ -->
-  <h2 style="font-size:22px;margin:18px 0 8px;">① VCとは何か？</h2>
-  <p style="margin:0 0 16px;">
-    VCは「検証可能なデジタル証明書」。<br>
-    学習・貢献・運営・紹介など、あなたの実績を第三者が確かめられる形で保有できます。<br>
-    <b>スコア＝日常、VC＝節目</b>として運用するのがawabota流。
-  </p>
+    <!-- 内容セクション -->
+    <section class="section">
+      <h2>✅ このセミナーで得られること</h2>
+      <ul>
+        <li>「VC」とは何か？ 信用を資産化する全く新しい仕組み</li>
+        <li>Founder VCを最初に持つことで得られる先行者優位</li>
+        <li>日常の行動（記事・参加・紹介）が信用スコアに直結する仕組み</li>
+        <li>スコアとVCに連動した収益装置（MD）の実態</li>
+        <li>VCを持たなかった場合に起こる“機会損失”とは？</li>
+      </ul>
+      <p><b>👉 「参加するだけ」で信用スコアが加点され、一定到達でVCが発行されます。</b></p>
+    </section>
 
-  <!-- 2. ファウンダーVCの存在 -->
-  <h2 style="font-size:22px;margin:18px 0 8px;">② ファウンダーVCの存在</h2>
-  <p style="margin:0 0 16px;">
-    立ち上げ期の先行者だけが持つ「Founder VC」。<br>
-    “最初に動いた”という証明で、案件・協業・信用の入口が一気に広がります。
-  </p>
+    <!-- こんな方におすすめ -->
+    <section class="section">
+      <h2>🔴 こんな方におすすめ</h2>
+      <ul>
+        <li>副業や投資で成果が出ず、将来が不安</li>
+        <li>収入の柱をもう一つ増やしたい</li>
+        <li>AI・Web3など新しい働き方を学びたい</li>
+        <li>コミュニティで繋がり、協業チャンスを広げたい</li>
+      </ul>
+    </section>
 
-  <!-- 3. 信用スコアがもう発行 -->
-  <h2 style="font-size:22px;margin:18px 0 8px;">③ 信用スコアはすでに発行中</h2>
-  <p style="margin:0 0 16px;">
-    記事投稿・セミナー参加・紹介・運営──日々の行動は即時にスコア加点。<br>
-    一定到達時に「里程VC（Contribution/Referral/Host など）」を発行します。
-  </p>
+    <!-- 参加しなかった場合 -->
+    <section class="section">
+      <h2>⚠️ VCを持たなかったらどうなる？</h2>
+      <ul>
+        <li>案件・提携時に「実績の即証明」ができず信頼で後れを取る</li>
+        <li>Founder優先のチャンスを逃しやすい</li>
+        <li>推薦・抜擢の場面で後手に回りやすい</li>
+      </ul>
+      <p><b>だから今、VCを受け取ることが最短ルートです。</b></p>
+    </section>
 
-  <!-- 4. MDも実装 -->
-  <h2 style="font-size:22px;margin:18px 0 8px;">④ MD（Monetization Device）も実装</h2>
-  <p style="margin:0 0 16px;">
-    スコアとVCに連動する収益装置（MD）が稼働中。<br>
-    証明できる実績→提携・販売・紹介の成約率が上がり、<b>経済圏全体でお金が回る</b>設計です。
-  </p>
+    <!-- CTA -->
+    <section id="apply" class="section" style="text-align:center;">
+      <h2>📩 今すぐ参加登録</h2>
+      <a href="https://example.com/zoom" style="display:inline-block;background:#111;color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;">
+        無料セミナーに参加する（Zoom / LINE申込）
+      </a>
+      <p style="font-size:12px;opacity:.7;margin:10px 0 0;">※ 参加するだけでスコア加点対象。一定到達で里程VCが発行されます。</p>
+    </section>
 
-  <!-- 5. VC持てなかったらどうなる？ -->
-  <h2 style="font-size:22px;margin:18px 0 8px;">⑤ VCを持てなかったらどうなる？</h2>
-  <p style="margin:0 0 8px;">
-    参加や学びは可能。ただし<b>節目の証明</b>が無いため、次の3点で差が出ます：
-  </p>
-  <ul style="margin:0 0 16px 18px;">
-    <li>案件・提携時に「実績の即証明」ができず、商談速度が落ちる</li>
-    <li>MDの一部優遇や限定企画（Founder優先枠など）に届きにくい</li>
-    <li>コミュニティ内での推薦・抜擢で後手に回りやすい</li>
-  </ul>
-  <p style="margin:0 0 16px;">
-    まずはスコアを日常で積み上げ、<b>節目でVCを受け取る</b>──これが最短ルートです。
-  </p>
-
-  <!-- CTA -->
-  <div id="apply" style="text-align:center;margin:24px 0 0;">
-    <a href="https://example.com/zoom" style="display:inline-block;background:#111;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:700;">
-      無料セミナーに参加する（Zoom/LINE申込）
-    </a>
-    <p style="font-size:12px;opacity:.7;margin:8px 0 0;">※ 参加自体がスコア加点対象。一定到達で里程VCが発行されます。</p>
-  </div>
-</section>
+  </main>
 
   <!-- 固定CTA -->
   <div class="cta">
     <div class="row">
-      <p>公式LINEを登録して無料zoomに参加</p>
+      <p>公式LINEを登録して無料Zoomに参加</p>
       <a id="ctaBtn" href="#">
         <img class="cta-img" src="/images/awabotaline.jpg" alt="友だち追加">
       </a>
     </div>
   </div>
 
-  <!-- クリック計測・LINE遷移 -->
+  <!-- 紹介者計測スクリプト -->
   <script>
     (function(){
       const GAS_URL = "https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec";
       const params = new URLSearchParams(location.search);
       const ref = params.get('ref') || '不明';
-
-      const refView = document.getElementById('refView');
-      if (params.get('ref')) {
-        refView.style.display = 'inline-flex';
-        refView.textContent = `紹介者：${ref}`;
-      }
 
       const LINE_ID  = "@479rnxap";
       const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref)}`;
@@ -219,34 +159,21 @@
 
       function sendRefOnClick(){
         const payload = new URLSearchParams({
-          ref,
-          event: 'cta_click',
-          ts: String(Date.now()),
-          ua: navigator.userAgent
+          ref, event:'cta_click', ts:String(Date.now()), ua:navigator.userAgent
         }).toString();
-
         let sent = false;
-        if (navigator.sendBeacon) {
-          sent = navigator.sendBeacon(`${GAS_URL}?${payload}`);
-        }
-        if (!sent) {
-          try {
-            fetch(GAS_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: payload,
-              keepalive: true
-            });
-          } catch (e) {}
+        if(navigator.sendBeacon){ sent = navigator.sendBeacon(`${GAS_URL}?${payload}`); }
+        if(!sent){
+          try{ fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:payload,keepalive:true}); }
+          catch(e){}
         }
       }
 
-      cta.addEventListener('click', (e)=>{
+      cta.addEventListener('click',(e)=>{
         e.preventDefault();
         sendRefOnClick();
-        // アプリへ → 失敗時は https へ
         location.href = deepURL;
-        setTimeout(()=>{ location.href = httpsURL; }, 900);
+        setTimeout(()=>{ location.href = httpsURL; },900);
       });
     })();
   </script>
