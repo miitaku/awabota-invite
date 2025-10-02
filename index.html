@@ -81,7 +81,7 @@
     <section class="vc-hero">
       <h1>🚀 VC（Verifiable Credential）無料Zoomセミナー</h1>
       <p>信用は“日常で積み上げ”<br>VCは“節目で証明”<br>awabota × DID × VC を先行体験</p>
-      <a href="#apply">無料セミナーに参加する</a>
+      <a id="applyBtnTop" href="#">無料セミナーに参加する</a>
     </section>
 
     <!-- 学べること -->
@@ -94,7 +94,7 @@
         <li>スコアとVCに連動した収益装置（MD）の実態</li>
         <li>VCを持たなかった場合に起こる<br>“機会損失”とは？</li>
       </ul>
-      <p><b>👉 「参加するだけ」で信用スコアが加点<br>　され、一定到達でVCが発行されます。</b></p>
+      <p><b>👉 「参加するだけ」で信用スコアが加点<br>され、一定到達でVCが発行されます。</b></p>
     </section>
 
     <!-- こんな方におすすめ -->
@@ -121,7 +121,7 @@
 
     <!-- 参加しなかった場合 -->
     <section class="section">
-      <h2>⚠️ VCを持たなかったら<br>　どうなる？</h2>
+      <h2>⚠️ VCを持たなかったらどうなる？</h2>
       <ul>
         <li>仕事がない</li>
         <li>住宅・ローン契約が結べない</li>
@@ -137,7 +137,7 @@
     <!-- CTA -->
     <section id="apply" class="section" style="text-align:center;">
       <h2>📩 今すぐ参加登録</h2>
-      <a href="https://example.com/zoom" style="display:inline-block;background:#111;color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;">
+      <a id="applyBtn" href="#" style="display:inline-block;background:#111;color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;">
         無料セミナーに参加する（Zoom / LINE申込）
       </a>
       <p style="font-size:12px;opacity:.7;margin:10px 0 0;">※ 参加するだけでスコア加点対象。一定到達で里程VCが発行されます。</p>
@@ -174,8 +174,18 @@
       const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref || '')}`;
       const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
 
-      const cta = document.getElementById('ctaBtn');
-      cta.href = httpsURL;
+      // 全てのCTAボタンを対象に
+      const buttons = [document.getElementById('ctaBtn'), document.getElementById('applyBtn'), document.getElementById('applyBtnTop')];
+      buttons.forEach(btn=>{
+        if(!btn) return;
+        btn.href = httpsURL;
+        btn.addEventListener('click',(e)=>{
+          e.preventDefault();
+          sendRefOnClick();
+          location.href = deepURL;
+          setTimeout(()=>{ location.href = httpsURL; },900);
+        });
+      });
 
       function sendRefOnClick(){
         const payload = new URLSearchParams({
@@ -191,13 +201,6 @@
           catch(e){}
         }
       }
-
-      cta.addEventListener('click',(e)=>{
-        e.preventDefault();
-        sendRefOnClick();
-        location.href = deepURL;
-        setTimeout(()=>{ location.href = httpsURL; },900);
-      });
     })();
   </script>
 </body>
