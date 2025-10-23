@@ -3,209 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>awabota公式｜無料Zoomご案内</title>
+  <title>awabota経済圏｜AI信用社会を超える唯一の解決策</title>
 
   <style>
     :root{
-      --brand:#105a8e; --ink:#222; --muted:#6b7280;
-      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
-      --card:#f7f9fc;
+      --black:#0b0b0f; --green:#28c76f; --blue:#0a66c2; --ink:#222;
+      --muted:#6b7280; --bg:#f7f9fc; --radius:16px;
+      --shadow:0 8px 32px rgba(0,0,0,.12);
     }
-    *{ box-sizing:border-box; }
-    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,"ヒラギノ角ゴ ProN","Noto Sans JP",sans-serif; color:var(--ink); background:#fff; }
-    .wrap{ max-width:720px; margin:auto; padding:20px 16px 120px; }
-
-    /* ブランドヘッダー */
-    .brand{
-      display:flex; align-items:center; gap:14px;
-      padding:14px 12px; margin:4px auto 20px;
-      border-radius:12px; background:var(--card);
-      width:95%; max-width:680px; box-shadow:var(--shadow);
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"ヒラギノ角ゴ ProN","Noto Sans JP",sans-serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.7;
     }
-    .brand img.logo{ width:70px; height:70px; object-fit:contain; }
-    .brand .meta{ display:flex; flex-direction:column; align-items:flex-start; gap:6px; margin-left:12px; }
-    .title-text{ font-size:1.4rem; font-weight:700; line-height:1.35; }
-    @media(min-width:640px){ .title-text{ font-size:1.6rem; } }
+    .wrap{max-width:900px;margin:auto;padding:20px 16px 120px;}
 
-    /* ヒーロー */
-    .vc-hero{ padding:36px 20px; background:#0b0b0f; color:#fff; text-align:center; border-radius:14px; margin-bottom:20px; }
-    .vc-hero h1{ font-size:1.8rem; margin:0 0 12px; line-height:1.4; }
-    .vc-hero p{ opacity:.9; font-size:1rem; margin:0 0 20px; line-height:1.7; }
-    .vc-hero a{ display:inline-block; background:#28c76f; color:#0b0b0f; font-weight:700; padding:14px 24px; border-radius:8px; text-decoration:none; font-size:1.1rem; }
-
-    /* セクション */
-    .section{ padding:24px 20px; margin:20px 0; background:#fff; border-radius:12px; border:1px solid #eef4fa; box-shadow:var(--shadow); }
-    .section h2{ font-size:1.4rem; font-weight:700; margin:0 0 12px; line-height:1.5; }
-    .section p{ margin:0 0 16px; font-size:1.05rem; line-height:1.7; }
-    .section ul{ margin:0 0 16px 18px; padding:0; font-size:1.05rem; line-height:1.7; }
-    .section li{ margin-bottom:8px; }
-
-    .highlight{
-      font-weight:700; font-size:1.05rem; line-height:1.7; margin-top:10px; text-align:left;
+    /* ファーストビュー */
+    .hero{
+      background:var(--black);
+      color:#fff;
+      text-align:center;
+      padding:60px 20px 40px;
+      border-radius:0 0 var(--radius) var(--radius);
+      box-shadow:var(--shadow);
     }
+    .hero h1{
+      font-size:1.9rem;
+      line-height:1.5;
+      font-weight:800;
+      margin:0 0 16px;
+    }
+    .hero p{
+      font-size:1.1rem;
+      opacity:.9;
+      margin:0 0 24px;
+    }
+    .hero strong{color:var(--green);}
+    .cta-btn{
+      display:inline-block;
+      background:var(--green);
+      color:#0b0b0f;
+      font-weight:700;
+      padding:14px 28px;
+      border-radius:10px;
+      text-decoration:none;
+      font-size:1.1rem;
+      transition:.3s;
+    }
+    .cta-btn:hover{filter:brightness(1.1);}
 
-    /* 受講者の声 */
-    .voices{ padding:40px 20px; background:#f7f7f7; max-width:900px; margin:40px auto; border-radius:8px; }
-    .voices h2{ font-size:22px; margin:0 0 20px; text-align:center; }
-    .voices ul{ list-style:none; padding:0; margin:0; }
-    .voices li{ margin:0 0 16px; padding:16px; background:#fff; border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.05); }
-    .voices p{ margin:0; font-size:16px; line-height:1.6; }
-
-    /* 紹介者表示 */
-    .refchip{
-      display:none;
-      margin:20px 0 0;
-      padding:8px 14px;
-      border-radius:999px;
-      background:#eef4fa;
-      color:#333;
-      font-size:.95rem;
+    /* 動画ブロック */
+    .video-section{
+      margin:40px 0;
       text-align:center;
     }
+    .video-wrapper{
+      position:relative;
+      padding-bottom:56.25%;
+      height:0;
+      overflow:hidden;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+    }
+    .video-wrapper iframe{
+      position:absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      border:0;
+    }
 
-    /* CTA固定 */
-    .cta{ position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid #eee; box-shadow:0 -8px 24px rgba(0,0,0,.06); padding:12px 16px; }
-    .cta .row{ max-width:720px; margin:auto; display:flex; gap:10px; align-items:center; justify-content:space-between; }
-    .cta p{ margin:0; font-size:1rem; color:#444; }
-    .cta img.cta-img{ height:56px; border-radius:12px; display:block; }
+    /* セクション */
+    .section{
+      background:#fff;
+      padding:32px 24px;
+      margin:32px 0;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .section h2{
+      font-size:1.5rem;
+      font-weight:700;
+      margin-bottom:16px;
+      color:var(--blue);
+    }
+    .section p, .section ul{
+      font-size:1.05rem;
+      margin:0 0 16px;
+    }
+    .section ul{padding-left:20px;}
+    .section li{margin-bottom:8px;}
+
+    /* ２段CTA */
+    .cta-block{
+      text-align:center;
+      background:#0b0b0f;
+      color:#fff;
+      padding:40px 20px;
+      border-radius:var(--radius);
+      margin-top:60px;
+      box-shadow:var(--shadow);
+    }
+    .cta-block h3{font-size:1.6rem;margin-bottom:20px;}
+    .cta-block a{
+      display:inline-block;
+      background:var(--green);
+      color:#0b0b0f;
+      font-weight:700;
+      padding:14px 24px;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:1.1rem;
+      margin:10px;
+      transition:.3s;
+    }
+    .cta-block a.secondary{
+      background:#fff;
+      color:#111;
+      border:2px solid var(--green);
+    }
+    .cta-block a:hover{filter:brightness(1.1);}
+
+    footer{
+      text-align:center;
+      font-size:.9rem;
+      color:var(--muted);
+      margin-top:60px;
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
 
-    <!-- ブランドヘッダー -->
-    <div class="brand">
-      <img class="logo" src="/images/logo2.jpg" alt="awabota公式ロゴ">
-      <div class="meta">
-        <div class="title-text">awabota公式Zoom ご案内</div>
+    <!-- ファーストビュー -->
+    <section class="hero">
+      <h1>AIの認証ゲートで人生が決まる時代が来る。<br>
+      あなたは<strong>「信用なし」で利用拒否される側</strong>か？<br>
+      それとも<strong>「信用を発行する側」</strong>か？</h1>
+      <p>2026年後半、AI信用スコア社会が本格化。<br>
+      銀行・医療・行政・雇用すらAI認証が必須に。<br>
+      しかし――awabotaは唯一、<strong>AI管理を超える経済圏</strong>を設計した。</p>
+      <a href="#join" class="cta-btn">awabota経済圏に参加する</a>
+    </section>
+
+    <!-- 動画セクション -->
+    <section class="video-section">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/fRHhSwyZwj4" 
+                title="AI社会と信用発行の真実" 
+                frameborder="0" 
+                allowfullscreen></iframe>
       </div>
-    </div>
-
-    <!-- ヒーロー -->
-    <section class="vc-hero">
-      <h1>🚀 VC（Verifiable Credential）無料Zoomセミナー</h1>
-      <p>信用は“日常で積み上げ”、VCは“節目で証明”。awabota × DID × VC を先行体験</p>
-      <a id="applyBtnTop" href="#">無料セミナーに参加する</a>
     </section>
 
-    <!-- 学べること -->
+    <!-- A: 問題提起 -->
     <section class="section">
-      <h2>✅ このセミナーで得られること</h2>
+      <h2>AIはあなたの自由を「数値化して制御」している</h2>
       <ul>
-        <li>「VC」とは何か？ 信用を資産化する全く新しい仕組み</li>
-        <li>Founder VCが存在することを知る</li>
-        <li>日常の行動（記事・参加・紹介）が信用スコアに直結する仕組み</li>
-        <li>スコアとVCに連動した収益装置（MD）の実態</li>
-        <li>VCを持たなかった場合に起こる<br>“機会損失”とは？</li>
+        <li>行動：移動・購買履歴から信用ランクを自動算出</li>
+        <li>健康：医療データが保険料と雇用条件を左右</li>
+        <li>金融：ローンや給付がAI審査で自動拒否される時代</li>
+        <li>情報：発言・投稿がAIフィルターで信用値に反映</li>
+        <li>消費：購入履歴が社会的信用スコアを形成</li>
       </ul>
-      <p class="highlight">👉 「参加するだけ」で信用スコアが加点<br>　され、一定到達でVCが発行されます。</p>
+      <p><strong>AIの門（Gate）</strong>が開くと、信用がなければ「存在未認証」とされ、社会参加さえ制限される。</p>
     </section>
 
-    <!-- こんな方におすすめ -->
+    <!-- B: awabotaの解決策 -->
     <section class="section">
-      <h2>🔴 こんな方におすすめ</h2>
+      <h2>awabota経済圏（web5.5構想）とは？</h2>
+      <p>AI支配の中で<strong>自由と経済的自立を守る唯一の構造</strong>。awabotaは個人が「信用を発行する側」になる仕組みを提供します。</p>
       <ul>
-        <li>副業や投資で成果が出ず、将来が不安</li>
-        <li>収入の柱をもう一つ増やしたい</li>
-        <li>AI・Web3など新しい働き方を学びたい</li>
-        <li>コミュニティで繋がり、協業チャンス<br>を広げたい</li>
+        <li><strong>VC（信用証明）</strong>：自分の行動と役割をブロックチェーン上に可視化</li>
+        <li><strong>awabota信用台帳</strong>：あなた自身が信用履歴を管理し、中央から独立</li>
+        <li><strong>Bridge構造</strong>：国・金融AIに依存せず、自分の証明を上書きできる</li>
       </ul>
     </section>
 
-    <!-- 受講者の声 -->
-    <section class="voices">
-      <h2>受講者の声</h2>
-      <ul>
-        <li><p>「国はなぜこんな話をしないのか？<br>知らないと詰む。」</p></li>
-        <li><p>「数年後は月に10億円とかつくれる感じがした。」</p></li>
-        <li><p>「今、案件もサイドビジネスも全部ダメ。これしかないかも。」</p></li>
-        <li><p>「自分の権利が全く無くなる人が<br>出てくる。」</p></li>
-      </ul>
-    </section>
-
-    <!-- 参加しなかった場合 -->
+    <!-- C: 経済的自立の仕組み -->
     <section class="section">
-      <h2>⚠️ VCを持たなかったら<br>　どうなる？</h2>
+      <h2>信用を「収益」に変える──信用生成経済の仕組み</h2>
       <ul>
-        <li>仕事がない</li>
-        <li>住宅・ローン契約が結べない</li>
-        <li>仲間の信用サークルに入れない</li>
-        <li>お金を借りられない</li>
-        <li>顧客や取引先に選ばれない</li>
-        <li>社会的権利を失う</li>
-        <li>情報・案件から取り残される</li>
+        <li><strong>信用スコア → RWA → 現金</strong>の新しい換金フロー</li>
+        <li><strong>RWA（信用型）</strong>：リアルビジネス＋信用データの連動型資産</li>
+        <li><strong>MD（Mission Device）</strong>：信用を発生させる装置。持つだけで即金とスコア獲得</li>
       </ul>
-      <p><b>だから今、VCを受け取ることが最短ルートです。</b></p>
+      <p>労働で時間を売る時代は終わり。これからは<strong>信用と構築物を流通させる時代</strong>へ。</p>
     </section>
 
-    <!-- CTA -->
-    <section id="apply" class="section" style="text-align:center;">
-      <h2>📩 今すぐ参加登録</h2>
-      <a id="applyBtn" href="#" style="display:inline-block;background:#111;color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;">
-        無料セミナーに参加する<br>（Zoom / LINE申込）
-      </a>
-      <p style="font-size:12px;opacity:.7;margin:10px 0 0;">※ 参加するだけでスコア加点対象。一定到達でVCが発行されます。</p>
-      <!-- 紹介者表示 -->
-      <div id="refView" class="refchip"></div>
+    <!-- D: 信用を増やす行動 -->
+    <section class="section">
+      <h2>信用を“貯める”ではなく、“流す”</h2>
+      <p>信用とは「信じる力（信念）」の循環。<br>誰かを支え、学び、発信し、繋ぐ。そのすべてが信用値になります。</p>
+      <ul>
+        <li>仲間を紹介する＝信用の橋渡し</li>
+        <li>記事を投稿する＝信用航海日誌を残す</li>
+        <li>感謝や応援を発信する＝信頼の循環をつくる</li>
+      </ul>
     </section>
+
+    <!-- E: クロージング＆行動喚起 -->
+    <section id="join" class="cta-block">
+      <h3>AIに使われる側か、AIを設計する側に立つか。</h3>
+      <p>自由と信用を取り戻す構造「awabota経済圏」へ。<br>
+      参加した瞬間からあなたの信用スコアは動き出します。</p>
+      <a href="https://line.me/R/ti/p/@479rnxap">公式LINEで参加する</a>
+      <a href="https://awabota.life/md" class="secondary">MD（信用生成装置）を手に入れる</a>
+    </section>
+
+    <footer>
+      <p>主宰：かずくん（小野和彦）｜awabota経済圏（Web5.5構想）</p>
+      <p>© 2025 awabota.life – All Rights Reserved.</p>
+    </footer>
 
   </main>
-
-  <!-- 固定CTA -->
-  <div class="cta">
-    <div class="row">
-      <p>公式LINEを登録して<br>無料Zoomに参加</p>
-      <a id="ctaBtn" href="#">
-        <img class="cta-img" src="/images/awabotaline.jpg" alt="友だち追加">
-      </a>
-    </div>
-  </div>
-
-  <!-- 紹介者計測スクリプト -->
-  <script>
-    (function(){
-      const GAS_URL = "https://script.google.com/macros/s/AKfycbxnGoVPhOWQ0MnWgYkjdtYmcWR4bqO-b30zMMunIcfGVN8PUPQNpcnXeYWnkNq71jCqJg/exec";
-      const params = new URLSearchParams(location.search);
-      const ref = params.get('ref');
-
-      const refView = document.getElementById('refView');
-      if(ref){
-        refView.style.display = 'block';
-        refView.textContent = `紹介者：${ref}`;
-      }
-
-      const LINE_ID  = "@479rnxap";
-      const httpsURL = `https://line.me/R/ti/p/${encodeURIComponent(LINE_ID)}?ref=${encodeURIComponent(ref || '')}`;
-      const deepURL  = `line://ti/p/${encodeURIComponent(LINE_ID)}`;
-
-      // 全CTAを対象に
-      const buttons = [document.getElementById('ctaBtn'), document.getElementById('applyBtn'), document.getElementById('applyBtnTop')];
-      buttons.forEach(btn=>{
-        if(!btn) return;
-        btn.href = httpsURL;
-        btn.addEventListener('click',(e)=>{
-          e.preventDefault();
-          sendRefOnClick();
-          location.href = deepURL;
-          setTimeout(()=>{ location.href = httpsURL; },900);
-        });
-      });
-
-      function sendRefOnClick(){
-        const payload = new URLSearchParams({
-          ref: ref || '',
-          event:'cta_click',
-          ts:String(Date.now()),
-          ua:navigator.userAgent
-        }).toString();
-        let sent = false;
-        if(navigator.sendBeacon){ sent = navigator.sendBeacon(`${GAS_URL}?${payload}`); }
-        if(!sent){
-          try{ fetch(GAS_URL,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:payload,keepalive:true}); }
-          catch(e){}
-        }
-      }
-    })();
-  </script>
 </body>
 </html>
