@@ -2,159 +2,95 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- iOSのアドレスバー伸縮対策 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>awabota公式｜AI信用社会を超える経済圏</title>
 <style>
-:root {
+:root{
   --main:#0b0b0f;
   --green:#32c178;
   --blue:#1a56db;
   --ink:#222;
   --muted:#6b7280;
 }
-body {
-  margin:0;
-  padding:0;
+*{box-sizing:border-box}
+body{
+  margin:0; padding:0;
   font-family:-apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
-  background:#fff;
-  color:var(--ink);
+  background:#fff; color:var(--ink);
 }
-main {
-  max-width:720px;
-  margin:auto;
-  padding-bottom:120px; /* CTA分の余白確保 */
-}
+/* 下部の固定CTAぶんのスペースを確保 */
+main{max-width:720px; margin:auto; padding-bottom:120px}
 
 /* ===== Header ===== */
-.header {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  padding:24px 16px 8px;
+.header{
+  display:flex; align-items:center; justify-content:center;
+  gap:12px; padding:24px 16px 8px;
 }
-.header img {
-  width:58px;
-  height:58px;
-  object-fit:contain;
-  position:relative;
-  top:-4px; /* ロゴを上方向に数ミリ調整 */
+.header img{
+  width:58px; height:58px; object-fit:contain;
+  position:relative; top:-4px; /* ロゴ微調整 */
 }
-.header h1 {
-  font-size:1.25rem;
-  margin:0;
-  font-weight:700;
-  line-height:1.5;
+.header h1{
+  font-size:1.25rem; margin:0; font-weight:700; line-height:1.5;
 }
-.header p {
-  margin:6px 0 0;
-  font-size:.95rem;
-  color:var(--muted);
-  text-align:left; /* タイトルと揃える */
-  padding-left:2px;
+.header p{
+  margin:6px 0 0; font-size:.95rem; color:var(--muted);
+  text-align:left; padding-left:2px;
 }
 
 /* ===== Hero ===== */
-.hero {
-  background:var(--main);
-  color:#fff;
-  padding:32px 20px;
-  border-radius:16px;
-  margin:0 16px 24px;
+.hero{
+  background:var(--main); color:#fff;
+  padding:32px 20px; border-radius:16px; margin:0 16px 24px;
 }
-.hero h2 {
-  font-size:1.4rem;
-  font-weight:800;
-  line-height:1.7;
-  margin-bottom:16px;
-  text-align:center;
+.hero h2{
+  font-size:1.4rem; font-weight:800; line-height:1.7;
+  margin:0 0 16px; text-align:center;
 }
-.hero h2 span { color:var(--green); }
-.hero p {
-  font-size:1rem;
-  line-height:1.8;
-  text-align:center;
-  margin-bottom:20px;
-}
+.hero h2 span{color:var(--green)}
+.hero p{font-size:1rem; line-height:1.8; text-align:center; margin:0}
 
 /* ===== Section ===== */
-.section {
-  background:#fff;
-  border-radius:14px;
-  margin:20px 16px;
-  padding:24px 20px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+.section{
+  background:#fff; border-radius:14px; margin:20px 16px;
+  padding:24px 20px; box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
-.section h3 {
-  color:var(--blue);
-  font-size:1.3rem;
-  font-weight:700;
-  margin-bottom:14px;
-  line-height:1.6;
+.section h3{color:var(--blue); font-size:1.3rem; font-weight:700; margin:0 0 14px; line-height:1.6}
+.section ul{margin:0; padding-left:20px; line-height:1.9}
+
+/* black card */
+.section.dark{background:var(--main); color:#fff}
+.section.dark h3{color:var(--green)}
+.section.dark ul li{color:#eee}
+
+/* ===== YouTube ===== */
+.video{margin:24px 16px; border-radius:14px; overflow:hidden}
+.video iframe{width:100%; height:210px; border:none}
+
+/* ===== Fixed CTA (ジッター対策版) ===== */
+.fixed-cta{
+  position:fixed; left:0; right:0; bottom:0;
+  /* iOSノッチ・アドレスバー伸縮対策 */
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom));
+  background:#fff; border-top:1px solid #ddd;
+  text-align:center; box-shadow:0 -6px 24px rgba(0,0,0,.06);
+
+  /* 再合成レイヤー化して揺れを抑制 */
+  transform:translateZ(0);
+  will-change:transform;
+  -webkit-backface-visibility:hidden; backface-visibility:hidden;
 }
-.section ul {
-  margin:0;
-  padding-left:20px;
-  line-height:1.9;
+.fixed-cta a{
+  display:inline-block; background:var(--green); color:#fff;
+  font-weight:700; font-size:1.05rem;
+  padding:14px 28px; border-radius:8px; text-decoration:none;
 }
 
-/* ===== Dark Section ===== */
-.section.dark {
-  background:var(--main);
-  color:#fff;
+/* iOS 12- 対応（env未対応ブラウザのフォールバック） */
+@supports not (padding: max(0px)){
+  .fixed-cta{padding-bottom:12px}
 }
-.section.dark h3 { color:var(--green); }
-.section.dark ul li { color:#eee; }
-
-/* ===== YouTube embed ===== */
-.video {
-  margin:24px 16px;
-  border-radius:14px;
-  overflow:hidden;
-}
-.video iframe {
-  width:100%;
-  height:210px;
-  border:none;
-}
-
-/* ===== CTA Fixed ===== */
-.fixed-cta {
-  position:fixed; /* 画面に固定 */
-  bottom:0;
-  left:0;
-  right:0;
-  z-index:9999; /* 最前面に配置 */
-  background:#fff;
-  border-top:1px solid #ddd;
-  padding:12px 20px;
-  text-align:center;
-  box-shadow:0 -6px 24px rgba(0,0,0,0.06);
-}
-.fixed-cta a {
-  display:inline-block;
-  background:var(--green);
-  color:#fff; /* テキストを白 */
-  font-weight:700;
-  font-size:1.05rem;
-  padding:14px 28px;
-  border-radius:8px;
-  text-decoration:none;
-  transition:background 0.25s ease;
-}
-.fixed-cta a:hover {
-  background:#29b06a;
-}
-
-/* ===== Footer ===== */
-footer {
-  text-align:center;
-  padding:50px 20px 100px;
-  color:var(--muted);
-  font-size:.9rem;
-  line-height:1.8;
-}
-footer p { margin:6px 0; }
 </style>
 </head>
 <body>
@@ -255,10 +191,24 @@ footer p { margin:6px 0; }
   </footer>
 </main>
 
-<!-- 固定CTA -->
-<div class="fixed-cta">
+<!-- 固定CTA（完全固定） -->
+<div class="fixed-cta" id="fixedCta">
   <a href="https://line.me/R/ti/p/@479rnxap">公式LINEで参加する</a>
 </div>
+
+<script>
+/* iOS Safariでの“わずかな揺れ”をさらに抑える小さなハック */
+(function(){
+  const cta = document.getElementById('fixedCta');
+  // スクロール/ズーム時に再合成を促し位置のズレを抑制
+  const nudge = () => { cta.style.transform = 'translateZ(0)'; };
+  window.addEventListener('scroll', nudge, {passive:true});
+  if (window.visualViewport) {
+    visualViewport.addEventListener('resize', nudge);
+    visualViewport.addEventListener('scroll', nudge);
+  }
+})();
+</script>
 
 </body>
 </html>
