@@ -12,14 +12,27 @@
   --ink:#222;
   --muted:#6b7280;
 }
-*{box-sizing:border-box;}
+
+/* ===== 基本設定 ===== */
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow:hidden;                     /* ← Safariのアドレスバー縮みを抑制 */
+}
 body {
-  margin:0; padding:0;
   font-family:-apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
   background:#fff; color:var(--ink);
+  display:flex; flex-direction:column;
 }
-main {
-  max-width:720px; margin:auto; padding-bottom:140px;
+
+/* ===== スクロール領域 ===== */
+.scroll-container {
+  flex:1;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;    /* スムーズスクロール */
+  overscroll-behavior:none;
+  padding-bottom:120px;
 }
 
 /* ===== Header ===== */
@@ -64,10 +77,7 @@ main {
 }
 .section ul { margin:0; padding-left:20px; line-height:1.9; }
 
-/* ===== Dark Section ===== */
-.section.dark {
-  background:var(--main); color:#fff;
-}
+.section.dark { background:var(--main); color:#fff; }
 .section.dark h3 { color:var(--green); }
 .section.dark ul li { color:#eee; }
 
@@ -75,18 +85,22 @@ main {
 .video { margin:24px 16px; border-radius:14px; overflow:hidden; }
 .video iframe { width:100%; height:210px; border:none; }
 
-/* ===== JS固定CTA ===== */
-#cta-wrapper {
-  position:absolute;
-  left:0; right:0; width:100%;
+/* ===== 固定CTA（完全安定版） ===== */
+.fixed-cta {
+  position:fixed;
+  left:0; right:0; bottom:0;
   background:#fff;
   border-top:1px solid #ddd;
   text-align:center;
   box-shadow:0 -6px 24px rgba(0,0,0,0.06);
-  padding:12px 20px;
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom));
   z-index:9999;
+  transform:translateZ(0);              /* GPU合成層を確保してブレ防止 */
+  will-change:transform;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
-#cta-wrapper a {
+.fixed-cta a {
   display:inline-block;
   background:var(--green);
   color:#fff;
@@ -95,9 +109,7 @@ main {
   padding:14px 28px;
   border-radius:8px;
   text-decoration:none;
-  transition:opacity .2s ease;
 }
-#cta-wrapper a:active { opacity:0.85; }
 
 /* ===== Footer ===== */
 footer {
@@ -109,7 +121,8 @@ footer p { margin:6px 0; }
 </head>
 <body>
 
-<main>
+<div class="scroll-container">
+
   <!-- HEADER -->
   <div class="header">
     <img src="/images/logo2.jpg" alt="awabota公式ロゴ">
@@ -175,23 +188,8 @@ footer p { margin:6px 0; }
     </ul>
   </section>
 
-  <!-- 信用の流れ -->
-  <section class="section dark">
-    <h3>信用を「貯める」ではなく、「流す」</h3>
-    <p>
-      信用とは「信じる力（信念）」の循環。<br>
-      誰かを支え、学び、発信し、繋ぐ。<br>
-      そのすべてが信用値になります。
-    </p>
-    <ul>
-      <li>仲間を紹介する＝信用の橋渡し</li>
-      <li>記事を投稿する＝信用航海日誌を残す</li>
-      <li>感謝や応援を発信する＝信頼の循環をつくる</li>
-    </ul>
-  </section>
-
   <!-- クロージング -->
-  <section class="section">
+  <section class="section dark">
     <h3>AIに使われる側か、AIを設計する側に立つか。</h3>
     <p>
       自由と信用を取り戻す構造「awabota経済圏」へ。<br>
@@ -203,33 +201,12 @@ footer p { margin:6px 0; }
   <footer>
     <p>© 2025 awabota.life – All Rights Reserved.</p>
   </footer>
-</main>
-
-<!-- JS制御型固定CTA -->
-<div id="cta-wrapper">
-  <a href="https://line.me/R/ti/p/@479rnxap">公式LINEで参加する</a>
 </div>
 
-<script>
-/**
- * Safariでのアドレスバー伸縮対策版
- * 常に画面下にCTAを固定（position: absolute制御）
- */
-const cta = document.getElementById('cta-wrapper');
-
-function updateCTA() {
-  const scrollY = window.scrollY;
-  const viewH = window.innerHeight;
-  const ctaH = cta.offsetHeight;
-  // CTAを画面下端に強制配置
-  cta.style.top = (scrollY + viewH - ctaH) + 'px';
-}
-
-// 初期化＆イベント登録
-window.addEventListener('scroll', updateCTA);
-window.addEventListener('resize', updateCTA);
-window.addEventListener('load', updateCTA);
-</script>
+<!-- 完全固定CTA -->
+<div class="fixed-cta">
+  <a href="https://line.me/R/ti/p/@479rnxap">公式LINEで参加する</a>
+</div>
 
 </body>
 </html>
