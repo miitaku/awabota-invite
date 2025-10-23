@@ -1,200 +1,193 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>awabota｜AI信用社会を超える唯一の経済圏</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>awabota公式｜AI信用社会を超える経済圏</title>
+<style>
+:root {
+  --main:#0b0b0f;
+  --green:#32c178;
+  --blue:#1a56db;
+  --ink:#222;
+  --muted:#6b7280;
+}
+body {
+  margin:0; padding:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+  background:#fff; color:var(--ink);
+}
+main { max-width:720px; margin:auto; padding-bottom:120px; }
 
-  <style>
-    :root{
-      --black:#0b0b0f; --green:#28c76f; --ink:#222;
-      --gray:#6b7280; --card:#f7f9fc;
-      --radius:14px; --shadow:0 8px 30px rgba(0,0,0,.08);
-    }
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,"ヒラギノ角ゴ ProN","Noto Sans JP",sans-serif;
-      color:var(--ink); background:#fff; line-height:1.8;
-    }
-    main{max-width:860px;margin:auto;padding:0 18px 120px;}
+/* ===== Header ===== */
+.header {
+  display:flex; align-items:center; justify-content:center;
+  gap:12px; padding:24px 16px 8px;
+}
+.header img {
+  width:58px; height:58px; object-fit:contain;
+}
+.header h1 {
+  font-size:1.25rem; margin:0; font-weight:700; line-height:1.4;
+}
+.header p { margin:4px 0 0; font-size:.95rem; color:var(--muted); text-align:center; }
 
-    /* ブランドヘッダー */
-    header{
-      text-align:center;
-      padding:32px 10px 16px;
-    }
-    header img{
-      width:100px;height:auto;margin-bottom:10px;
-    }
-    header h1{
-      font-size:1.6rem;font-weight:800;margin:0;color:var(--black);
-    }
-    header p{margin:6px 0 0;color:var(--gray);font-size:.95rem;}
+/* ===== Hero ===== */
+.hero {
+  background:var(--main); color:#fff;
+  padding:32px 20px; border-radius:16px; margin:0 16px 24px;
+}
+.hero h2 {
+  font-size:1.4rem; font-weight:800; line-height:1.6;
+  margin-bottom:16px; text-align:center;
+}
+.hero h2 span { color:var(--green); }
+.hero p {
+  font-size:1rem; line-height:1.7; text-align:center; margin-bottom:20px;
+}
+.hero .cta {
+  display:inline-block; background:var(--green); color:var(--main);
+  font-weight:700; padding:14px 24px; border-radius:8px; text-decoration:none;
+  font-size:1.05rem;
+}
 
-    /* ヒーロー */
-    .hero{
-      background:var(--black); color:#fff;
-      border-radius:var(--radius);
-      padding:48px 20px 36px;
-      text-align:center; margin-top:10px;
-    }
-    .hero h2{
-      font-size:1.6rem;line-height:1.6;margin:0 0 20px;
-      font-weight:800;
-    }
-    .hero strong{color:var(--green);}
-    .hero p{
-      font-size:1rem;margin:0 0 24px;opacity:.9;
-    }
-    .cta-main{
-      display:inline-block;background:var(--green);
-      color:#0b0b0f;font-weight:700;
-      padding:14px 30px;border-radius:8px;
-      text-decoration:none;font-size:1.1rem;
-      transition:.3s;
-    }
-    .cta-main:hover{filter:brightness(1.08);}
+/* ===== Section ===== */
+.section {
+  background:#fff; border-radius:14px; margin:20px 16px;
+  padding:24px 20px; box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+.section h3 {
+  color:var(--blue); font-size:1.3rem; font-weight:700; margin-bottom:14px;
+}
+.section ul { margin:0; padding-left:20px; line-height:1.8; }
 
-    /* YouTubeセクション */
-    .video{
-      margin:40px auto;text-align:center;
-    }
-    .video-wrapper{
-      position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;
-      box-shadow:var(--shadow);
-    }
-    .video-wrapper iframe{
-      position:absolute;top:0;left:0;width:100%;height:100%;border:0;
-    }
+/* black card section */
+.section.dark {
+  background:var(--main); color:#fff;
+}
+.section.dark h3 { color:var(--green); }
+.section.dark ul li { color:#eee; }
 
-    /* セクション共通 */
-    section{
-      background:#fff;margin:28px 0;padding:28px 22px;
-      border-radius:var(--radius);box-shadow:var(--shadow);
-    }
-    section.alt{
-      background:var(--black);color:#fff;
-    }
-    section h3{
-      font-size:1.4rem;margin:0 0 16px;
-      font-weight:800;line-height:1.5;
-    }
-    section.alt h3{color:var(--green);}
-    section p,section ul{font-size:1.05rem;margin:0 0 16px;}
-    ul{padding-left:22px;}
-    li{margin-bottom:8px;}
+/* ===== YouTube embed ===== */
+.video {
+  margin:24px 16px; border-radius:14px; overflow:hidden;
+}
+.video iframe {
+  width:100%; height:210px; border:none;
+}
 
-    /* 固定CTA */
-    .fixed-cta{
-      position:fixed;bottom:0;left:0;right:0;
-      background:#fff;border-top:1px solid #ddd;
-      box-shadow:0 -8px 24px rgba(0,0,0,.06);
-      padding:14px 16px;text-align:center;
-    }
-    .fixed-cta a{
-      display:inline-block;
-      background:var(--green);color:#0b0b0f;
-      font-weight:700;font-size:1.05rem;
-      padding:12px 22px;border-radius:8px;
-      text-decoration:none;
-    }
-    footer{
-      text-align:center;margin-top:60px;
-      color:var(--gray);font-size:.9rem;
-    }
-  </style>
+/* ===== CTA Fixed ===== */
+.fixed-cta {
+  position:fixed; bottom:0; left:0; right:0;
+  background:#fff; border-top:1px solid #ddd;
+  padding:12px 20px; text-align:center;
+  box-shadow:0 -6px 24px rgba(0,0,0,0.06);
+}
+.fixed-cta a {
+  display:inline-block; background:var(--green); color:var(--main);
+  font-weight:700; font-size:1.05rem; padding:14px 28px;
+  border-radius:8px; text-decoration:none;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align:center; padding:50px 20px 100px;
+  color:var(--muted); font-size:.9rem;
+}
+footer p { margin:6px 0; }
+</style>
 </head>
 <body>
 
-  <header>
+<main>
+  <!-- HEADER -->
+  <div class="header">
     <img src="/images/logo2.jpg" alt="awabota公式ロゴ">
-    <h1>awabota公式｜AI信用社会を超える経済圏</h1>
-    <p>Web5.5構想 × VC × RWA</p>
-  </header>
-
-  <main>
-
-    <!-- Hero -->
-    <div class="hero">
-      <h2>AIの認証ゲートで人生が決まる時代が来る。<br>
-      あなたは<strong>「信用なし」</strong>で利用拒否される側か？<br>
-      それとも<strong>「信用を発行する側」</strong>か？</h2>
-      <p>2026年、AI信用スコア社会が本格化。<br>
-      しかしawabotaは唯一、<strong>AI管理を超える経済圏</strong>を設計した。</p>
-      <a href="https://line.me/R/ti/p/@479rnxap" class="cta-main">awabota経済圏に参加する</a>
+    <div>
+      <h1>awabota公式｜AI信用社会を超える経済圏</h1>
+      <p>Web5.5構想 × VC × RWA</p>
     </div>
-
-    <!-- Video -->
-    <div class="video">
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/fRHhSwyZwj4"
-          title="AI社会とVCの真実" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <!-- A -->
-    <section>
-      <h3>AIはあなたの自由を「数値化して制御」している</h3>
-      <ul>
-        <li>行動：移動・購買履歴から信用ランクを自動算出</li>
-        <li>健康：医療データが保険料と雇用条件を左右</li>
-        <li>金融：AI審査でローンや給付が自動拒否される</li>
-        <li>情報：発言・投稿がAIフィルターで信用値に反映</li>
-        <li>消費：購入履歴が社会的信用スコアを形成</li>
-      </ul>
-    </section>
-
-    <!-- B -->
-    <section class="alt">
-      <h3>awabota経済圏（Web5.5構想）とは？</h3>
-      <p>AI支配の中で自由と経済的自立を守る唯一の構造。<br>awabotaは個人が「信用を発行する側」になる仕組みを提供します。</p>
-      <ul>
-        <li><strong>VC（信用証明）</strong>：行動・役割をブロックチェーン上に可視化</li>
-        <li><strong>awabota信用台帳</strong>：自分で信用履歴を管理し中央から独立</li>
-        <li><strong>Bridge構造</strong>：国や金融AIに依存せず証明を上書き可能</li>
-      </ul>
-    </section>
-
-    <!-- C -->
-    <section>
-      <h3>信用を「収益」に変える──信用生成経済の仕組み</h3>
-      <ul>
-        <li>信用スコア → RWA → 現金 の新しい換金フロー</li>
-        <li>RWA（信用型）：リアルビジネス＋信用データ連動資産</li>
-        <li>MD（Mission Device）：信用を発生させる装置。持つだけでスコア加点</li>
-      </ul>
-    </section>
-
-    <!-- D -->
-    <section class="alt">
-      <h3>信用を「貯める」ではなく、「流す」</h3>
-      <p>信用とは「信じる力（信念）」の循環。誰かを支え、学び、発信し、繋ぐ。その全てが信用値となります。</p>
-      <ul>
-        <li>仲間を紹介する＝信用の橋渡し</li>
-        <li>記事を投稿する＝信用航海日誌を残す</li>
-        <li>感謝や応援を発信する＝信頼の循環を生む</li>
-      </ul>
-    </section>
-
-    <!-- E -->
-    <section class="hero" style="margin-top:40px;">
-      <h2>AIに使われる側か、AIを設計する側に立つか。</h2>
-      <p>自由と信用を取り戻す構造「awabota経済圏」へ。<br>参加した瞬間から、あなたの信用スコアは動き出します。</p>
-      <a href="https://line.me/R/ti/p/@479rnxap" class="cta-main">公式LINEで参加する</a>
-      <p style="font-size:.9rem;margin-top:8px;">※ MD（信用生成装置）は参加後に案内されます。</p>
-    </section>
-
-    <footer>
-      <p>主宰：かずくん（小野和彦）｜awabota経済圏（Web5.5構想）</p>
-      <p>© 2025 awabota.life – All Rights Reserved.</p>
-    </footer>
-  </main>
-
-  <!-- 固定CTA -->
-  <div class="fixed-cta">
-    <a href="https://line.me/R/ti/p/@479rnxap">公式LINEで参加する</a>
   </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h2>AIの認証ゲートで人生が決まる時代が来る。<br>
+    あなたは「<span>信用なし</span>」で利用拒否される側か？<br>
+    それとも「<span>信用を発行する側</span>」か？</h2>
+    <p>2026年、AI信用スコア社会が本格化。<br>
+    しかしawabotaは唯一、<span>AI管理を超える経済圏</span>を設計した。</p>
+  </section>
+
+  <!-- Video -->
+  <div class="video">
+    <iframe src="https://www.youtube.com/embed/fRHhSwyZwj4" 
+    title="AI社会とawabota経済圏" allowfullscreen></iframe>
+  </div>
+
+  <!-- AI管理の現実 -->
+  <section class="section">
+    <h3>AIはあなたの自由を「数値化して制御」している</h3>
+    <ul>
+      <li>行動：移動・購買履歴から信用ランクを自動算出</li>
+      <li>健康：医療データが保険料と雇用条件を左右</li>
+      <li>金融：AI審査でローンや給付が自動拒否される</li>
+      <li>情報：発言・投稿がAIフィルターで信用値に反映</li>
+      <li>消費：購入履歴が社会的信用スコアを形成</li>
+    </ul>
+  </section>
+
+  <!-- awabota経済圏 -->
+  <section class="section dark">
+    <h3>awabota経済圏（Web5.5構想）とは？</h3>
+    <p>AI支配の中で自由と経済的自立を守る唯一の構造。<br>
+    awabotaは個人が「信用を発行する側」になる仕組みを提供します。</p>
+    <ul>
+      <li><b>VC（信用証明）</b>：行動・役割をブロックチェーン上で可視化</li>
+      <li><b>awabota信用台帳</b>：自分で信用履歴を管理し中央から独立</li>
+      <li><b>Bridge構造</b>：国や金融AIに依存せず証明を上書き可能</li>
+    </ul>
+  </section>
+
+  <!-- 信用生成経済 -->
+  <section class="section">
+    <h3>信用を「収益」に変える──信用生成経済の仕組み</h3>
+    <ul>
+      <li>信用スコア → RWA → 現金 の新しい換金フロー</li>
+      <li>RWA（信用型）：リアルビジネス＋信用データ連動資産</li>
+      <li>MD（Mission Device）：信用を発生させる装置。持つだけでスコア加点</li>
+    </ul>
+  </section>
+
+  <!-- 信用の流れ -->
+  <section class="section dark">
+    <h3>信用を「貯める」ではなく、「流す」</h3>
+    <p>信用とは「信じる力（信念）」の循環。<br>
+    誰かを支え、学び、発信し、繋ぐ。そのすべてが信用値になります。</p>
+    <ul>
+      <li>仲間を紹介する＝信用の橋渡し</li>
+      <li>記事を投稿する＝信用航海日誌を残す</li>
+      <li>感謝や応援を発信する＝信頼の循環をつくる</li>
+    </ul>
+  </section>
+
+  <!-- クロージング -->
+  <section class="section">
+    <h3>AIに使われる側か、AIを設計する側に立つか。</h3>
+    <p>自由と信用を取り戻す構造「awabota経済圏」へ。<br>
+    参加した瞬間からあなたの信用スコアは動き出します。</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>主宰：かずくん（小野和彦）｜awabota経済圏（Web5.5構想）</p>
+    <p>© 2025 awabota.life – All Rights Reserved.</p>
+  </footer>
+</main>
+
+<!-- 固定CTA -->
+<div class="fixed-cta">
+  <a href="https://line.me/R/ti/p/@479rnxap">公式LINEで参加する</a>
+</div>
 
 </body>
 </html>
