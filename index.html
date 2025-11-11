@@ -108,8 +108,8 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;padding:40px 0 100px;}
     <strong>どんなテーマでも構いません。</strong><br>
     awabotaスタッフが、あなたの波に合った形で返信します。</p>
 
-    <!-- ✅ 紹介リンク反映付きLINEボタン -->
-    <a id="lineLink" href="https://line.me/R/ti/p/@479rnxap" target="_blank" rel="noopener" class="btn">
+    <!-- ✅ 紹介リンク反映付きLINEボタン（GAS経由） -->
+    <a id="lineLink" href="#" target="_blank" rel="noopener" class="btn">
       公式LINEで相談を送る<br>（無料）
     </a>
 
@@ -119,21 +119,24 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;padding:40px 0 100px;}
 
 <!-- 固定CTA -->
 <div class="fixed-cta">
-  <a id="lineLinkFixed" href="https://line.me/R/ti/p/@479rnxap" target="_blank" rel="noopener">
+  <a id="lineLinkFixed" href="#" target="_blank" rel="noopener">
     公式LINEで相談
   </a>
 </div>
 
-<!-- 🔁 紹介リンクスクリプト -->
+<!-- 🔁 紹介リンクスクリプト（GASログ記録＋転送対応） -->
 <script>
 (function(){
   const params = new URLSearchParams(window.location.search);
-  const ref = params.get('ref');
-  if(ref){
-    const base = "https://line.me/R/ti/p/@479rnxap?ref=" + encodeURIComponent(ref);
-    document.getElementById('lineLink').href = base;
-    document.getElementById('lineLinkFixed').href = base;
-  }
+  const ref = params.get('ref') || "unknown";
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbwUiNRz2Ut0XptoTB54b2NUsxsvaMhgiIgQcqZl32GTPWJuSzKxmp5jESby6WrI-zZqzg/exec";
+
+  // GAS経由でLINEへ転送（ref付き）
+  const redirectUrl = GAS_URL + "?ref=" + encodeURIComponent(ref);
+
+  // 各ボタンに反映
+  document.getElementById('lineLink').href = redirectUrl;
+  document.getElementById('lineLinkFixed').href = redirectUrl;
 })();
 </script>
 
