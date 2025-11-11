@@ -4,16 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>awabota Affiliate｜あなたの波から始まる信用循環</title>
+
 <style>
 :root{
-  --bg:#0c111a; --card:#111823; --txt:#eaf2ff; --mut:#9fb0c8; --acc:#00b900;
-  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --bg:#f9fafb;
+  --card:#ffffff;
+  --ink:#0f172a;
+  --mut:#64748b;
+  --acc:#00b900;
+  --border:#e5e7eb;
+  --shadow:0 8px 20px rgba(0,0,0,.08);
 }
-*{box-sizing:border-box;}
+*{box-sizing:border-box;margin:0;padding:0;}
 body{
-  margin:0; background:var(--bg); color:var(--txt);
+  background:var(--bg);
+  color:var(--ink);
   font-family:-apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
-  display:flex; flex-direction:column; min-height:100vh; overflow:hidden;
+  display:flex; flex-direction:column; min-height:100vh;
 }
 .scroll{
   flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch;
@@ -24,7 +31,7 @@ main{max-width:720px;margin:auto;padding:40px 24px;}
 /* ===== Hero ===== */
 .hero{text-align:center;margin-bottom:40px;}
 .hero img.logo{width:80px;height:80px;object-fit:contain;margin-bottom:10px;}
-.hero h1{font-size:1.7rem;line-height:1.5;margin:0 0 12px;}
+.hero h1{font-size:1.7rem;line-height:1.5;margin:0 0 12px;font-weight:700;}
 .hero p{font-size:1.05rem;color:var(--mut);margin:0;}
 
 /* ===== Message Section ===== */
@@ -32,7 +39,7 @@ main{max-width:720px;margin:auto;padding:40px 24px;}
   background:var(--card);
   border-radius:16px;box-shadow:var(--shadow);
   padding:28px 24px;margin-bottom:36px;text-align:center;
-  border:1px solid #1f2a3a;
+  border:1px solid var(--border);
 }
 .msg h2{font-size:1.4rem;margin:0 0 14px;}
 .msg p{line-height:1.9;margin:0 0 24px;}
@@ -42,7 +49,7 @@ main{max-width:720px;margin:auto;padding:40px 24px;}
 .btn{
   display:inline-block;background:var(--acc);color:#fff;
   font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;
-  box-shadow:0 6px 16px rgba(0,185,0,.35);
+  box-shadow:0 6px 16px rgba(0,185,0,.25);
   transition:.2s;
 }
 .btn:hover{opacity:.9;transform:translateY(1px);}
@@ -51,16 +58,17 @@ main{max-width:720px;margin:auto;padding:40px 24px;}
 /* ===== Why Section ===== */
 .why{margin-bottom:40px;}
 .why h3{color:var(--acc);font-size:1.3rem;margin:0 0 12px;text-align:center;}
-.why ul{margin:0;padding-left:20px;line-height:1.9;}
+.why ul{margin:0;padding-left:20px;line-height:1.9;color:var(--ink);}
 .why li{margin-bottom:10px;}
 
 /* ===== FAQ ===== */
 .faq{
-  background:#0f1624;border-radius:16px;padding:24px 20px;
-  border:1px solid #1f2a3a;box-shadow:var(--shadow);
+  background:var(--card);
+  border-radius:16px;padding:24px 20px;
+  border:1px solid var(--border);box-shadow:var(--shadow);
 }
 .faq h3{text-align:center;color:var(--acc);margin:0 0 20px;}
-.faq dt{font-weight:700;margin-top:18px;}
+.faq dt{font-weight:700;margin-top:18px;color:var(--ink);}
 .faq dd{margin:4px 0 14px 0;line-height:1.8;color:var(--mut);}
 
 /* ===== Footer ===== */
@@ -69,10 +77,12 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;padding:40px 0 100px;}
 /* ===== 固定CTA ===== */
 .fixed-cta{
   position:fixed;left:0;right:0;bottom:0;
-  background:var(--card);border-top:1px solid #1f2a3a;
+  background:var(--card);
+  border-top:1px solid var(--border);
   text-align:center;padding:12px 20px calc(12px + env(safe-area-inset-bottom));
-  box-shadow:0 -6px 24px rgba(0,0,0,.5);z-index:9999;
-  transform:translateZ(0);will-change:transform;
+  box-shadow:0 -6px 24px rgba(0,0,0,.08);
+  z-index:9999;
+  will-change:transform;
 }
 .fixed-cta a{
   display:inline-block;background:var(--acc);color:#fff;font-weight:700;
