@@ -94,7 +94,7 @@ function sendRefAndOpenLINE() {
   const params = new URLSearchParams(window.location.search);
   const ref = params.get("ref") || "不明";
 
-  // ✅ GASに非同期で送信
+  // ✅ fetch実行 → 少し遅延してLINEへ
   fetch(GAS_URL, {
     method: "POST",
     mode: "no-cors",
@@ -102,11 +102,12 @@ function sendRefAndOpenLINE() {
     body: new URLSearchParams({ ref }),
   });
 
-  // ✅ LINEをすぐ開く
-  window.location.href = LINE_URL;
+  // ✅ 0.4秒後にLINEへ遷移（iOSの中断対策）
+  setTimeout(() => {
+    window.location.href = LINE_URL;
+  }, 400);
 }
 
-// ✅ ボタン両方にイベント登録
 document.getElementById("lineButton").addEventListener("click", sendRefAndOpenLINE);
 document.getElementById("lineButtonFixed").addEventListener("click", sendRefAndOpenLINE);
 </script>
