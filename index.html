@@ -3,142 +3,50 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>awabota Affiliate｜あなたの波から始まる信用循環</title>
-
+<title>awabota公式｜AI信用社会を超える経済圏</title>
 <style>
-:root{
-  --bg:#f9fafb;
-  --card:#ffffff;
-  --ink:#0f172a;
-  --mut:#64748b;
-  --acc:#00b900;
-  --border:#e5e7eb;
-  --shadow:0 8px 20px rgba(0,0,0,.08);
+:root {
+  --main:#0b0b0f;
+  --green:#32c178;
+  --blue:#1a56db;
+  --ink:#222;
+  --muted:#6b7280;
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:-apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
-  display:flex; flex-direction:column; min-height:100vh;
+html, body {
+  margin:0;padding:0;height:100%;overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;
 }
-.scroll{
-  flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch;
-  overscroll-behavior:none; padding-bottom:120px;
+.scroll-container {flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;padding-bottom:120px;}
+.fixed-cta {
+  position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;
+  text-align:center;box-shadow:0 -6px 24px rgba(0,0,0,0.06);
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom));z-index:9999;
 }
-main{max-width:720px;margin:auto;padding:40px 24px;}
-
-/* ===== Hero ===== */
-.hero{text-align:center;margin-bottom:40px;}
-.hero img.logo{width:80px;height:80px;object-fit:contain;margin-bottom:10px;}
-.hero h1{font-size:1.7rem;line-height:1.5;margin:0 0 12px;font-weight:700;}
-.hero p{font-size:1.05rem;color:var(--mut);margin:0;}
-
-/* ===== Message Section ===== */
-.msg{
-  background:var(--card);
-  border-radius:16px;box-shadow:var(--shadow);
-  padding:28px 24px;margin-bottom:36px;text-align:center;
-  border:1px solid var(--border);
-}
-.msg h2{font-size:1.4rem;margin:0 0 14px;}
-.msg p{line-height:1.9;margin:0 0 24px;}
-.msg strong{color:var(--acc);}
-
-/* ===== Button ===== */
-.btn{
-  display:inline-block;background:var(--acc);color:#fff;
-  font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;
-  box-shadow:0 6px 16px rgba(0,185,0,.25);
-  transition:.2s;
-}
-.btn:hover{opacity:.9;transform:translateY(1px);}
-.note{margin-top:18px;color:var(--mut);font-size:.9rem;line-height:1.6;}
-
-/* ===== Why Section ===== */
-.why{margin-bottom:40px;}
-.why h3{color:var(--acc);font-size:1.3rem;margin:0 0 12px;text-align:center;}
-.why ul{margin:0;padding-left:20px;line-height:1.9;color:var(--ink);}
-.why li{margin-bottom:10px;}
-
-/* ===== FAQ ===== */
-.faq{
-  background:var(--card);
-  border-radius:16px;padding:24px 20px;
-  border:1px solid var(--border);box-shadow:var(--shadow);
-}
-.faq h3{text-align:center;color:var(--acc);margin:0 0 20px;}
-.faq dt{font-weight:700;margin-top:18px;color:var(--ink);}
-.faq dd{margin:4px 0 14px 0;line-height:1.8;color:var(--mut);}
-
-/* ===== Footer ===== */
-footer{text-align:center;color:var(--mut);font-size:.9rem;padding:40px 0 100px;}
-
-/* ===== 固定CTA ===== */
-.fixed-cta{
-  position:fixed;left:0;right:0;bottom:0;
-  background:var(--card);
-  border-top:1px solid var(--border);
-  text-align:center;padding:12px 20px calc(12px + env(safe-area-inset-bottom));
-  box-shadow:0 -6px 24px rgba(0,0,0,.08);
-  z-index:9999;
-  will-change:transform;
-}
-.fixed-cta a{
-  display:inline-block;background:var(--acc);color:#fff;font-weight:700;
-  font-size:1.05rem;padding:14px 28px;border-radius:10px;text-decoration:none;
+.fixed-cta a {
+  display:inline-block;background:var(--green);color:#fff;font-weight:700;
+  font-size:1.05rem;padding:14px 28px;border-radius:8px;text-decoration:none;
 }
 </style>
 </head>
 <body>
-<div class="scroll">
-<main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <img class="logo" src="/images/logo2.jpg" alt="awabotaロゴ">
-    <h1>どんな内容でもOK<br>あなたの波から始まる<br>“信用の流れ”へ</h1>
-    <p>AI・信用SEO・Web・人生相談<br>すべてawabotaが受け止めます</p>
-  </section>
-
-  <!-- MESSAGE -->
-  <section class="msg">
-    <h2>あなたの「今」を聞かせて<br>ください</h2>
-    <p>ビジネス、AI、信用スコア、<br>集客、人間関係——<br>
-    <strong>どんなテーマでも構いません。</strong><br>
-    awabotaスタッフが、あなたの波に合った形で返信します。</p>
-
-    <!-- ✅ 紹介リンク反映付きLINEボタン（GAS経由） -->
-    <a id="lineLink" href="#" target="_blank" rel="noopener" class="btn">
-      公式LINEで相談を送る<br>（無料）
-    </a>
-
-    <p class="note">登録後、トーク画面でそのままメッセージを<br>送ってください<br>
-    すべての内容に順次対応します（深夜帯は翌営業）</p>
-  </section>
-
-<!-- 固定CTA -->
-<div class="fixed-cta">
-  <a id="lineLinkFixed" href="#" target="_blank" rel="noopener">
-    公式LINEで相談
-  </a>
+<div class="scroll-container">
+  <!-- あなたの本文ここに -->
 </div>
 
-<!-- 🔁 紹介リンクスクリプト（GASログ記録＋転送対応） -->
+<!-- 固定ボタン -->
+<div class="fixed-cta">
+  <a id="lineLink" href="#" target="_blank" rel="noopener">公式LINEで参加する</a>
+</div>
+
+<!-- ✅ リンクスクリプト -->
 <script>
 (function(){
   const params = new URLSearchParams(window.location.search);
-  const ref = params.get('ref') || "unknown";
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbwUiNRz2Ut0XptoTB54b2NUsxsvaMhgiIgQcqZl32GTPWJuSzKxmp5jESby6WrI-zZqzg/exec";
-
-  // GAS経由でLINEへ転送（ref付き）
-  const redirectUrl = GAS_URL + "?ref=" + encodeURIComponent(ref);
-
-  // 各ボタンに反映
-  document.getElementById('lineLink').href = redirectUrl;
-  document.getElementById('lineLinkFixed').href = redirectUrl;
+  const ref = params.get('ref') || 'unknown';
+  const redirectURL = `https://あなたのnetlifyドメイン/redirect.html?ref=${encodeURIComponent(ref)}`;
+  document.getElementById('lineLink').href = redirectURL;
 })();
 </script>
-
 </body>
 </html>
