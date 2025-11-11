@@ -31,9 +31,9 @@ p {
   const params = new URLSearchParams(window.location.search);
   const ref = params.get("ref") || "不明";
 
-  // ✅ GASに紹介コードを記録
+  // ✅ GASに紹介コードを送信（no-corsモード）
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbw1ApYW5uBCCy7Z_euoEcYlvOB2nWeYhnS0D_JEFyFddz7NOaPTEHxSMNmY2sSXAd8_cA/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbzqQwYAwwPshX8qA9mtQydmLm_ipmy8KpdxpIJS6QHOZ_eRcHlcen_z_smu8auXn5T3SA/exec", {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -43,7 +43,7 @@ p {
     console.error("送信エラー:", err);
   }
 
-  // ✅ 送信後にLINE公式アカウントへ転送
+  // ✅ 0.8秒後にLINE公式アカウントへ転送
   setTimeout(() => {
     window.location.href = "https://line.me/R/ti/p/@479rnxap";
   }, 800);
