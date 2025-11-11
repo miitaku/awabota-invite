@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>awabota Affiliate｜あなたの波から始まる信用循環</title>
-
 <style>
 :root{
   --bg:#f9fafb;
@@ -27,25 +26,18 @@ body{
   overscroll-behavior:none; padding-bottom:120px;
 }
 main{max-width:720px;margin:auto;padding:40px 24px;}
-
-/* ===== Hero ===== */
 .hero{text-align:center;margin-bottom:40px;}
 .hero img.logo{width:80px;height:80px;object-fit:contain;margin-bottom:10px;}
 .hero h1{font-size:1.7rem;line-height:1.5;margin:0 0 12px;font-weight:700;}
 .hero p{font-size:1.05rem;color:var(--mut);margin:0;}
-
-/* ===== Message Section ===== */
 .msg{
-  background:var(--card);
-  border-radius:16px;box-shadow:var(--shadow);
+  background:var(--card);border-radius:16px;box-shadow:var(--shadow);
   padding:28px 24px;margin-bottom:36px;text-align:center;
   border:1px solid var(--border);
 }
 .msg h2{font-size:1.4rem;margin:0 0 14px;}
 .msg p{line-height:1.9;margin:0 0 24px;}
 .msg strong{color:var(--acc);}
-
-/* ===== Button ===== */
 .btn{
   display:inline-block;background:var(--acc);color:#fff;
   font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;
@@ -54,16 +46,11 @@ main{max-width:720px;margin:auto;padding:40px 24px;}
 }
 .btn:hover{opacity:.9;transform:translateY(1px);}
 .note{margin-top:18px;color:var(--mut);font-size:.9rem;line-height:1.6;}
-
-/* ===== 固定CTA ===== */
 .fixed-cta{
   position:fixed;left:0;right:0;bottom:0;
-  background:var(--card);
-  border-top:1px solid var(--border);
+  background:var(--card);border-top:1px solid var(--border);
   text-align:center;padding:12px 20px calc(12px + env(safe-area-inset-bottom));
-  box-shadow:0 -6px 24px rgba(0,0,0,.08);
-  z-index:9999;
-  will-change:transform;
+  box-shadow:0 -6px 24px rgba(0,0,0,.08);z-index:9999;
 }
 .fixed-cta a{
   display:inline-block;background:var(--acc);color:#fff;font-weight:700;
@@ -74,50 +61,54 @@ main{max-width:720px;margin:auto;padding:40px 24px;}
 <body>
 <div class="scroll">
 <main>
-
-  <!-- HERO -->
   <section class="hero">
     <img class="logo" src="/images/logo2.jpg" alt="awabotaロゴ">
     <h1>どんな内容でもOK<br>あなたの波から始まる<br>“信用の流れ”へ</h1>
     <p>AI・信用SEO・Web・人生相談<br>すべてawabotaが受け止めます</p>
   </section>
 
-  <!-- MESSAGE -->
   <section class="msg">
     <h2>あなたの「今」を聞かせて<br>ください</h2>
     <p>ビジネス、AI、信用スコア、<br>集客、人間関係——<br>
     <strong>どんなテーマでも構いません。</strong><br>
     awabotaスタッフが、あなたの波に合った形で返信します。</p>
 
-    <!-- ✅ 紹介リンク反映付きLINEボタン -->
-    <a id="lineLink" href="#" target="_blank" rel="noopener" class="btn">
-      公式LINEで相談を送る<br>（無料）
-    </a>
+    <button id="lineButton" class="btn">公式LINEで相談を送る<br>（無料）</button>
 
     <p class="note">登録後、トーク画面でそのままメッセージを<br>送ってください<br>
     すべての内容に順次対応します（深夜帯は翌営業）</p>
   </section>
-
 </main>
 </div>
 
-<!-- 固定CTA -->
 <div class="fixed-cta">
-  <a id="lineLinkFixed" href="#" target="_blank" rel="noopener">
-    公式LINEで相談
-  </a>
+  <button id="lineButtonFixed" class="btn">公式LINEで相談</button>
 </div>
 
-<!-- ✅ リダイレクト設定 -->
+<!-- ✅ 記録＋LINE遷移スクリプト -->
 <script>
-(function(){
-  const params = new URLSearchParams(window.location.search);
-  const ref = params.get("ref") || "unknown";
-  const redirect = "https://awabota-invite.netlify.app/redirect.html?ref=" + encodeURIComponent(ref);
-  document.getElementById("lineLink").href = redirect;
-  document.getElementById("lineLinkFixed").href = redirect;
-})();
-</script>
+const GAS_URL = "https://script.google.com/macros/s/AKfycby-hqIL_59XoOx_MXlgh42wX5h_vjAY0mUHoYrmhaiIY7X3sdIyVX6TtBhkGVY54xuzEg/exec";
+const LINE_URL = "https://line.me/R/ti/p/@479rnxap";
 
+function sendRefAndOpenLINE() {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get("ref") || "不明";
+
+  // ✅ GASに非同期で送信
+  fetch(GAS_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ ref }),
+  });
+
+  // ✅ LINEをすぐ開く
+  window.location.href = LINE_URL;
+}
+
+// ✅ ボタン両方にイベント登録
+document.getElementById("lineButton").addEventListener("click", sendRefAndOpenLINE);
+document.getElementById("lineButtonFixed").addEventListener("click", sendRefAndOpenLINE);
+</script>
 </body>
 </html>
