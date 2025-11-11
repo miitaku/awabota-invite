@@ -28,17 +28,25 @@ p {
 </style>
 <script>
 (async () => {
+  // URLパラメータ取得
   const params = new URLSearchParams(window.location.search);
   const ref = params.get("ref") || "不明";
 
-  // ✅ スプレッドシートに紹介者を記録（GAS）
-  await fetch("https://script.google.com/macros/s/AKfycbwUiNRz2Ut0XptoTB54b2NUsxsvaMhgiIgQcqZl32GTPWJuSzKxmp5jESby6WrI-zZqzg/exec", {
-    method: "POST",
-    body: new URLSearchParams({ ref }),
-  });
+  // ✅ GAS（紹介コード台帳）に記録
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbw1ApYW5uBCCy7Z_euoEcYlvOB2nWeYhnS0D_JEFyFddz7NOaPTEHxSMNmY2sSXAd8_cA/exec", {
+      method: "POST",
+      body: new URLSearchParams({ ref }),
+    });
+  } catch (err) {
+    console.error("記録エラー:", err);
+  }
 
-  // ✅ 記録後にLINE公式へ転送
-  window.location.href = "https://line.me/R/ti/p/@479rnxap";
+  // ✅ 記録後にLINE公式アカウントへ転送
+  const lineUrl = "https://line.me/R/ti/p/@479rnxap";
+  setTimeout(() => {
+    window.location.href = lineUrl;
+  }, 800);
 })();
 </script>
 </head>
